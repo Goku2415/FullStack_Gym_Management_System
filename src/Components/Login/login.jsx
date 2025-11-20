@@ -2,6 +2,12 @@ import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import {toast,ToastContainer} from 'react-toastify';
+
+
+
+
+
+
 const Login = () => {
     // const [loginField,setLoginField] = useState({"userName":"","password":""});
 
@@ -13,9 +19,9 @@ const Login = () => {
         
     }
 
-    const handleOnChange =(event,name)=>{
-        setLoginField({...loginField,[name]:event.target.value});
-    }
+    // const handleOnChange =(event,name)=>{
+    //     setLoginField({...loginField,[name]:event.target.value});
+    // }
     return (
         <div className='w-1/3  p-10 mt-20 ml-20 bg-gray-50 bg-opacity-50 h-fit'>
             <div className='font-sans text-white text-center text-3xl '>Login</div>

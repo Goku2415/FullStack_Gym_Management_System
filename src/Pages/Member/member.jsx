@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Modal from '../../Components/Modal/modal.jsx';
-import MemberCard from '../../Components/MemberCard/memberCard,jsx';
+import MemberCard from '../../Components/MemberCard/memberCard.jsx';
 import AddmemberShip from '../../Components/Addmembership/addmemberShip.jsx';
 import Addmembers from '../../Components/Addmembers/addmembers.jsx';
 import axios from 'axios';
@@ -33,19 +33,11 @@ const Member = () => {
         fetchData(0, 9);
     }, [])
 
-    const fetchData = async (skip, limits) => {
-
-        await axios.get(`http://localhost:4000/members/all-member?skip=${skip}&limit=${limits}`, { withCredentials: true }).then((response) => {
-            // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
-        }).catch(err => {
-            toast.error("Something Technical Fault")
-            console.log(err)
-        })
+    const fetchData = async () => {
+        let totalData = 52;
+        setTotalData(totalData);
+        
+        
 
 
     }
@@ -71,23 +63,14 @@ const Member = () => {
 
     const handleNext = () => {
         if (currentPage !== noOfPage) {
-            // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
+            
         }
     }
 
-    const handleSearchData = async () => {
-        // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
-    }
+    // const handleSearchData = async () => {
+   
+
+    // }
     return (
         <div className='text-black p-5 w-3/4 h-[100vh]'>
 

@@ -6,8 +6,8 @@ import Home from './Pages/Home/home';
 import {Routes,Route,useNavigate} from 'react-router-dom'
 import { useState,useEffect } from 'react';
 import Member from './Pages/Member/member';
-import GeneralUser from './Pages/GeneralUser/generalUser';
-import MemberDetail from './Pages/MemberDetail/memberDetail';
+// import GeneralUser from './Pages/GeneralUser/generalUser';
+// import MemberDetail from './Pages/MemberDetail/memberDetail';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -19,7 +19,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false)
 
   useEffect(()=>{
-    let isLogedIn = localStorage.getItem("isLogin");
+    let isLogedIn = sessionStorage.getItem("isLogin");
     if(isLogedIn){
       setIsLogin(true);
       navigate('/dashboard')
@@ -28,7 +28,7 @@ function App() {
       setIsLogin(false)
       navigate('/');
     }
-  },[localStorage.getItem("isLogin")])
+  },[sessionStorage.getItem("isLogin")])
 
   return (
     <div className="flex">

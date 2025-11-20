@@ -17,11 +17,15 @@ const Dashboard = () => {
       if (ref.current && !ref.current.contains(event.target)) {
         setAccordianDashboard(false);
       }
-    },[accordianDashboard])
+    };
 
-  const handleOnClickMenu = (value)=>{
-    sessionStorage.setItem('func',value);
+   
+
+    const handleOnClickMenu = (value)=>{
+      sessionStorage.setItem('func',value);
   }
+
+
 
   return (
     <div className='w-3/4 text-black p-5 relative'>
@@ -53,7 +57,7 @@ const Dashboard = () => {
 
 
         {/* this is the card block */}
-        <Link to={'/specific/monthly'} onClick={()=>handleOnClickMenu("monthlyJoined")} className='w-full h-fit border-2 bg-white rounded-lg cursor-pointer'>
+        <Link  onClick={()=>handleOnClickMenu("monthlyJoined")} className='w-full h-fit border-2 bg-white rounded-lg cursor-pointer'>
           <div className='h-3 rounded-t-lg bg-gradient-to-r from-blue-400 via-purple-400 to-yellow-400'></div>
 
           <div className='py-7 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:bg-slate-900 hover:text-white '>

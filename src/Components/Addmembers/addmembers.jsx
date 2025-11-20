@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
-import axios from 'axios';
+// import axios from 'axios';
 
-import Stack from '@mui/material/Stack';
-import LinearProgress from '@mui/material/LinearProgress';
+// import Stack from '@mui/material/Stack';
+// import LinearProgress from '@mui/material/LinearProgress';
 import { ToastContainer,toast } from 'react-toastify';
 
 const Addmembers = () => {
@@ -39,7 +39,6 @@ const Addmembers = () => {
   //     setImageLoader(false)
 
   //   }
-
 
 
   // }
@@ -105,7 +104,9 @@ const Addmembers = () => {
 
         <input type='file'/>
 
-        <div className=""><img src="./ss.png" alt="The shadow photo " className="w-full h-full rounded-full " /></div>
+        <div className="">
+          <img src="./ss.png" alt="The shadow photo " className="w-full h-full rounded-full"/>
+        </div>
 
         <div className='p-3 border-2 w-28 text-lg h-14 text-center bg-slate-900 text-white rounded-xl cursor-pointer hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>Register</div>
 
