@@ -10,8 +10,10 @@ import Modal from '../../Components/Modal/modal.jsx';
 import MemberCard from '../../Components/MemberCard/memberCard.jsx';
 import AddmemberShip from '../../Components/Addmembership/addmemberShip.jsx';
 import Addmembers from '../../Components/Addmembers/addmembers.jsx';
-import axios from 'axios';
+
 import { ToastContainer, toast } from 'react-toastify';
+
+
 const Member = () => {
     const [addMembership, setAddmemberShip] = useState(false);
     const [addMember, setAddmember] = useState(false)
@@ -36,10 +38,7 @@ const Member = () => {
     const fetchData = async () => {
         let totalData = 52;
         setTotalData(totalData);
-        
-        
-
-
+     
     }
 
     const handleMemberShip = () => {
@@ -50,27 +49,8 @@ const Member = () => {
         setAddmember(prev => !prev);
     }
 
-    const handlePrev = () => {
-        if (currentPage !== 1) {
-            // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
-        }
-    }
-
-    const handleNext = () => {
-        if (currentPage !== noOfPage) {
-            
-        }
-    }
-
-    // const handleSearchData = async () => {
    
 
-    // }
     return (
         <div className='text-black p-5 w-3/4 h-[100vh]'>
 
@@ -114,7 +94,6 @@ const Member = () => {
 
             {addMembership && <Modal header="Add Membership" handleClose={handleMemberShip} content={<AddmemberShip handleClose={handleMemberShip} />} />}
             {addMember && <Modal header={"Add New Member"} handleClose={handleMembers} content={<Addmembers />} />}
-            <ToastContainer />
         </div>
     )
 }

@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-// import Loader from '../Loader/loader'
-import axios from 'axios'
 import { ToastContainer,toast } from 'react-toastify'
 
 
@@ -26,42 +24,6 @@ const ForgotPassword = () => {
         }
     }
 
-    // const changePassword = async()=>{
-    //     setLoader(true)
-    //     // .       
-    //         // .
-    //         // Please Watch the youtube video for full code 
-    //         // .
-    //         // .
-    //         // .
-    // }
-
-
-    // const verifyOTP = async()=>{
-    //     setLoader(true);
-    //     // .       
-    //         // .
-    //         // Please Watch the youtube video for full code 
-    //         // .
-    //         // .
-    //         // .
-    // }
-
-    // const sendOtp = async()=>{
-    //     setLoader(true);
-    //     // .       
-    //         // .
-    //         // Please Watch the youtube video for full code 
-    //         // .
-    //         // .
-    //         // .
-    // }
-
-
-
-    // const handleOnChange =()=>{
-    //     setInputField
-    // }
     return (
         <div className='w-full'>
             <div className="w-full mb-5 ">

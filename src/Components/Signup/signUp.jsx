@@ -2,20 +2,13 @@ import React, { useState } from 'react'
 import './signUp.css';
 import Modal from '../Modal/modal';
 import ForgotPassword from '../ForgotPassword/forgotPassword';
-import axios from 'axios';
-import Stack from '@mui/material/Stack';
-import LinearProgress from '@mui/material/LinearProgress';
 import { ToastContainer,toast } from 'react-toastify';
-
+import { useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
 
     const [forgotPassword, setForgotPassword] = useState(false);
-
-
-    // const [inputField, setInputField] = useState({ gymName: "", email: "", userName: "", password: "", profilePic: "https://th.bing.com/th/id/OIP.h4NU8Jb9tA2gJLi3veRj-wHaEl?rs=1&pid=ImgDetMain" })
-
 
     const [loaderImage, setLoaderImage] = useState(false);
 
@@ -23,34 +16,11 @@ const SignUp = () => {
         setForgotPassword(prev => !prev);
     }
 
+    const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setInputField(prev => ({ ...prev, [name]: value }));
+    };
 
-
-
-    // const handleOnchange = (event, name) => {
-    //     setInputField({ ...inputField, [name]: event.target.value })
-    // }
-
-
-    const uploadImage = async (event) => {
-
-        // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
-
-
-    }
-
-    const handleRegister = async()=>{
-        // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
-    }
 
 
     return (
@@ -58,15 +28,15 @@ const SignUp = () => {
             <div className='font-sans text-white text-center text-3xl '>Register Your Gym</div>
 
 
-            <input type='text'  className='w-full mb-10 p-2 rounded-lg' placeholder='Enter Email' />
+            <input name="email" value={inputField.email} onChange={handleOnChange} type='text'  className='w-full mb-10 p-2 rounded-lg' placeholder='Enter Email' />
 
 
-            <input type='text'  className='w-full mb-10 p-2 rounded-lg' placeholder='Enter Gym Name' />
+            <input name="gymName" value={inputField.gymName} onChange={handleOnChange} type='text'  className='w-full mb-10 p-2 rounded-lg' placeholder='Enter Gym Name' />
 
 
-            <input type='text' className='w-full mb-10 p-2 rounded-lg' placeholder='Enter UserName' />
+            <input name="userName" value={inputField.userName} onChange={handleOnChange} type='text' className='w-full mb-10 p-2 rounded-lg' placeholder='Enter UserName' />
 
-            <input type='password'  className='w-full mb-10 p-2 rounded-lg' placeholder='Enter password' />
+            <input name="password" value={inputField.password} onChange={handleOnChange} type='password'  className='w-full mb-10 p-2 rounded-lg' placeholder='Enter password' />
             
             <input type='file'  className='w-full mb-10 p-2 rounded-lg' />
 
@@ -79,7 +49,6 @@ const SignUp = () => {
             <div className='p-2 w-[80%] mt-5 border-2 bg-slate-800 mx-auto rounded-lg text-white text-center text-lg hover:bg-white hover:text-black font-semibold cursor-pointer' onClick={() => handleClose()}>Forgot Password</div>
 
             {forgotPassword && <Modal header="Forgot Password" handleClose={handleClose} content={<ForgotPassword />} />}
-            
         </div>
     )
 }

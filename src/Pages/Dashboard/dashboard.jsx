@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-
-// import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import ErrorIcon from '@mui/icons-material/Error';
 import ReportIcon from '@mui/icons-material/Report';
@@ -19,13 +17,15 @@ const Dashboard = () => {
       }
     };
 
-   
-
-    const handleOnClickMenu = (value)=>{
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  
+  },[])
+const handleOnClickMenu = (value)=>{
       sessionStorage.setItem('func',value);
   }
-
-
 
   return (
     <div className='w-3/4 text-black p-5 relative'>

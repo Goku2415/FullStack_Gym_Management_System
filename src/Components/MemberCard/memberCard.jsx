@@ -11,12 +11,6 @@ const MemberCard = ({item}) => {
                 <CircleIcon className=' absolute top-0 left-0' sx={{ color: item?.status==="Active"?"greenyellow":"red" }} />
             </div>
 
-           {/* // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // . */}
             <div className='mx-auto mt-2 text-center text-xl  font-mono'>
                 Next Bill Date 
             </div>

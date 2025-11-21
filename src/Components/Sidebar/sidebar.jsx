@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { Link,useLocation,useNavigate } from 'react-router-dom';
 const Sidebar = () => {
 
@@ -58,12 +57,7 @@ const Sidebar = () => {
                 <div>Members</div>
             </Link>
 
-            {/* // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // . */}
+            <button onClick={handleLogout} className="mt-6 p-2 bg-red-600 rounded">Logout</button>
         </div>
     </div>
   )

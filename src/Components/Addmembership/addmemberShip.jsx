@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {toast,ToastContainer} from 'react-toastify';
+
+
 const AddmemberShip = ({handleClose}) => {
 
     const [inputField, setInputField] = useState({ months: "", price: "" });
@@ -11,27 +13,27 @@ const AddmemberShip = ({handleClose}) => {
         setInputField({ ...inputField, [name]: event.target.value })
     }
 
-    const fetchMembership = async () => {
-       // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
+     const fetchMemberships = async () => {
+    try {
+      const res = await axios.get("http://localhost:4000/membership/get"); // adapt endpoint
+      setList(res.data.data || []);
+    } catch (err) {
+      console.error(err);
+      toast.error("Unable to fetch memberships");
     }
+  };
 
     useEffect(() => {
-        fetchMembership()
-    }, [])
+        fetchMemberships()
+    }, []);
 
-    const handleAddmembership = async()=>{
-        // .       
-            // .
-            // Please Watch the youtube video for full code 
-            // .
-            // .
-            // .
-    }
+
+
+    const handleChange = (e) => {
+    const { name, value } = e.target;
+    setMembership(prev => ({ ...prev, [name]: value }));
+  };
+
 
     return (
         <div className='text-black'>
@@ -71,7 +73,6 @@ const AddmemberShip = ({handleClose}) => {
                 <div onClick={()=>{handleAddmembership()}} className='text-lg border-2 p-1 w-auto mt-0 rounded-xl cursor-pointer hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'> Add +</div>
 
             </div>
-            <ToastContainer/>
         </div >
     )
 }
