@@ -25,30 +25,30 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div className='w-full'>
-            <div className="w-full mb-5 ">
+        <div className='w-full mx-10   rounded-lg text-black '>
+            <div className="w-[60vh]  mb-5 ">
                 <div>Enter Your Email</div>
-                <input type="text" className=" w-1/2 p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter Email' />
+                <input type="text" className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter Email' />
             </div>
            
 
            { 
-                emailSubmit &&  <div className="w-full mb-5 ">
+                emailSubmit &&  <div className="w-[60vh]  mb-5 ">
                 <div>Enter your OTP</div>
-                <input type="text" className=" w-1/2 p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter OTP' />
+                <input type="text" className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter OTP' />
             </div>
             }
 
 
            {
-            otpValidate &&  <div className="w-full mb-5 ">
+            otpValidate &&  <div className="w-[60vh]  mb-5 ">
                 <div>Enter New Password</div>
-                <input type="text" className=" w-1/2 p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter New Password' />
+                <input type="text" className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter New Password' />
             </div>
             }
             
 
-            <div className='bg-slate-800 text-white mx-auto w-2/3 p-3 rounded-lg text-center font-semibold cursor-pointer border-2 hover:bg-white hover:text-black' onClick={() => handleSubmit()}>{contentVal}</div>
+            <div className='bg-slate-900 text-white mx-40 w-fit  mt-10 p-3 rounded-lg text-center font-semibold cursor-pointer border-2 hover:bg-white hover:text-black' onClick={() => handleSubmit()}>{contentVal}</div>
             {loader && <loader />}
             <ToastContainer/>
         </div>

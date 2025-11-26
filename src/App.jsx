@@ -11,20 +11,22 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem("isLogin");
-
+    let isLoggedIn = sessionStorage.getItem("isLogin");
     if (isLoggedIn) {
       setIsLogin(true);
       navigate('/dashboard');
-    } else {
+    } 
+    else {
       setIsLogin(false);
       navigate('/');
     }
-  }, [navigate]); // ONLY navigate is needed
+  }, [sessionStorage.getItem("isLogin")]); 
 
   return (
     <div className="flex">
-      {isLogin && <Sidebar />}
+      {
+        isLogin && <Sidebar />
+      }
 
       <Routes>
         <Route path='/' element={<Home />} />

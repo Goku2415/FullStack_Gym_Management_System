@@ -16,13 +16,13 @@ const Addmembers = () => {
   };
 
 
-  const [inputField, setInputField] = useState({
-  name: "",
-  mobileNo: "",
-  address: "",
-  joiningDate: "",
-  membership: ""
-  });
+  // const [inputField, setInputField] = useState({
+  // name: "",
+  // mobileNo: "",
+  // address: "",
+  // joiningDate: "",
+  // membership: ""
+  // });
 
   const handleRegisterButton = () => {
   toast.success("Member added!");
@@ -34,14 +34,14 @@ const Addmembers = () => {
     <div className='text-black'>
       <div className='grid gap-5 grid-cols-2 text-lg'>
 
-        <input name='name' value={inputField.name} onChange={handleOnChange} placeholder='Name of the Joinee' type='text' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
-        <input name='mobileNo' value={inputField.mobileNo} onChange={handleOnChange} placeholder='Mobile No.' type='text' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
-        <input name='address' value={inputField.address} onChange={handleOnChange} placeholder='Enter Address' type='text' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
-        <input name='joiningDate' value={inputField.joiningDate} onChange={handleOnChange} placeholder='Joining Date' type='date' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
+        <input name='name' onChange={handleOnChange} placeholder='Name of  Joinee' type='text' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
+        <input name='mobileNo' onChange={handleOnChange} placeholder='Mobile No.' type='text' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
+        <input name='address'  onChange={handleOnChange} placeholder='Enter Address' type='text' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
+        <input name='joiningDate' onChange={handleOnChange} placeholder='Joining Date' type='date' className='border-2 w-[90%] pl-3 pr-3 pt-2 pb-2 border-slate-400 rounded-md h-12' />
 
 
 
-        <select value={inputField.membership} onChange={handleOnChangeSelect} className='border-2 w-[90%] h-12 pt-2 pb-2 border-slate-400 rounded-md placeholder:text-gray'>
+        <select onChange={handleOnChangeSelect} className='border-2 w-[90%] h-12 pt-2 pb-2 border-slate-400 rounded-md placeholder:text-gray'>
 
           <option value="">Select Membership</option>
           <option value="1 Months Membership">1 Months Membership</option>

@@ -43,27 +43,33 @@ const SignUp = () => {
     };
 
     return (
-        <div className='customSignup w-1/3 p-10 mt-20 ml-20 bg-gray-50 bg-opacity-50 h-[450px] overflow-y-auto'>
+        <div className='customSignup w-[60vh] p-8 mt-44  ml-44 bg-slate-200 opacity-80 h-[450px] overflow-y-auto rounded-lg text-black '>
             <ToastContainer />
-            <div className='font-sans text-black text-center text-3xl mb-5'>Register Your Gym</div>
+            <div className='font-sans text-black text-center text-3xl mb-6'>Register Your Gym</div>
 
-            <input name="email" value={inputField.email} onChange={handleOnChange} type='text' className='w-full mb-10 p-2 rounded-lg' placeholder='Enter Email' />
+            <input name="email" value={inputField.email} onChange={handleOnChange} type='text' className='w-full mb-10 p-2 rounded-lg hover:bg-white cursor-pointer border-2' placeholder='Enter Email' />
 
-            <input name="gymName" value={inputField.gymName} onChange={handleOnChange} type='text' className='w-full mb-10 p-2 rounded-lg' placeholder='Enter Gym Name' />
+            <input name="username" value={inputField.userName} onChange={handleOnChange} type='text' className='w-full mb-10 p-2 rounded-lg border-2 cursor-pointer hover:bg-white ' placeholder='Enter Username' />
 
-            <input name="userName" value={inputField.userName} onChange={handleOnChange} type='text' className='w-full mb-10 p-2 rounded-lg' placeholder='Enter UserName' />
+            <input name="password" value={inputField.password} onChange={handleOnChange} type='password' className='w-full mb-10 p-2 rounded-lg border-2 cursor-pointer hover:bg-white ' placeholder='Enter password' />
 
-            <input name="password" value={inputField.password} onChange={handleOnChange} type='password' className='w-full mb-10 p-2 rounded-lg' placeholder='Enter password' />
+            {/* <input type='file' className='w-full mb-10 p-2  rounded-lg border-2 cursor-pointer hover:bg-white' /> */}
 
-            <input type='file' className='w-full mb-10 p-2 rounded-lg' />
+            <input type="file" className="w-full mb-10 p-2  rounded-lg border-2 cursor-pointer hover:bg-white  " />
 
-            {inputField.profilePic && <img src={inputField.profilePic} className='mb-10 h-[200px] w-[250px]' alt="Profile" />}
 
-            <div className='p-2 w-[80%] border-2 bg-slate-800 mx-auto rounded-lg text-white text-center text-lg hover:bg-white hover:text-black font-semibold cursor-pointer' onClick={handleRegister}>Register</div>
+            <div className="flex w-full gap-8 " >
+                <img src='./y.jpg' className='mb-10 rounded-lg h-[200px] w-[150px]' alt="Profile" />
+                
+                <div className="w-full ">
+                    <div className='p-2 w-full border-2 bg-slate-800 mt-10 rounded-lg text-white text-center text-lg hover:bg-white hover:text-black font-semibold cursor-pointer' onClick={handleRegister}>Register</div>
 
-            <div className='p-2 w-[80%] mt-5 border-2 bg-slate-800 mx-auto rounded-lg text-white text-center text-lg hover:bg-white hover:text-black font-semibold cursor-pointer' onClick={handleClose}>Forgot Password</div>
+                    <div className='p-2 w-full mt-5 border-2 bg-slate-800 mx-auto rounded-lg text-white text-center text-lg hover:bg-white hover:text-black font-semibold cursor-pointer' onClick={handleClose}>Forgot Password</div>
+                </div>
+            </div>
 
-            {forgotPassword && <Modal header="Forgot Password" handleClose={handleClose} content={<ForgotPassword />} />}
+
+            {forgotPassword && <Modal header="Forgot Password" handleClose={handleClose} content={<ForgotPassword  />} />}
         </div>
     )
 }
