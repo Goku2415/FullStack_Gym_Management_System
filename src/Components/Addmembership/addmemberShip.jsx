@@ -39,6 +39,7 @@ const AddmemberShip = ({ handleClose }) => {
   return (
     <div className="text-black">
       <div className="flex flex-wrap gap-5 items-center justify-center">
+        
         {/* Block for membership Details */}
         <div className="text-lg bg-slate-800 text-white border-2 pl-2 pr-2 flex-col gap-3 justify-between pt- ">
           <div>1 Month Membership </div>
@@ -82,9 +83,9 @@ const AddmemberShip = ({ handleClose }) => {
 
         <div
           onClick={() => {
-            handleAddmembership();
+            AddmemberShip();
           }}
-          className="text-lg border-2 p-1 w-auto mt-0 rounded-xl cursor-pointer hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+          className="text-lg border-2 p-1 w-auto mt-0 rounded-xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-fuchsia-300"
         > Add +
         </div>
       </div>

@@ -13,36 +13,40 @@ import Addmembers from '../../Components/Addmembers/addmembers.jsx';
 
 import { ToastContainer, toast } from 'react-toastify';
 
-
+ 
 const Member = () => {
     const [addMembership, setAddmemberShip] = useState(false);
     const [addMember, setAddmember] = useState(false)
 
-    const [data, setData] = useState([                   {_id: "1", profilePic: "./ss.png", status: "Active"},
-    {_id: "2", profilePic: "./ss.png", status: "Inactive"},
-    {_id: "3", profilePic: "./ss.png", status: "Active"},
-    ]);
+    const [data, setData] = useState([
+        {_id: "1", profilePic: "./ss.png", status: "Active"},
+        {_id: "2", profilePic: "./ss.png", status: "Inactive"},
+        {_id: "3", profilePic: "./ss.png", status: "Active"},]);
+
     const [skip, setSkip] = useState(0);
     const [search, setSearch] = useState("");
+
     const [isSearchModeOn, setIsSearchModeOn] = useState(false)
     const [currentPage, setCurrentPage] = useState(1);
+
     const [startFrom, setSTartFrom] = useState(0);
     const [endTo, setEndTo] = useState(9);
     const [totalData, setTotalData] = useState(0);
+
     const [limit, setLimit] = useState(9);
     const [noOfPage, setNoOfPage] = useState(0);
 
     useEffect(() => {
-        fetchData(0, 9);
+        fetchData();
     }, [])
 
     const fetchData = async () => {
-        let totalData = 52;
+        let totalData = 54;
         setTotalData(totalData);
 
         let extraPage = totalData % limit === 0 ? 0 : 1;
         let totalPage = parseInt(totalData / limit) + extraPage;
-        setNoOfPage(totalPage);
+        setNoOfPage(totalPage);  
      
         if(totalData===0){
             setSTartFrom(0);
@@ -61,51 +65,55 @@ const Member = () => {
         setAddmember(prev => !prev);
     }
 
-    // const handleSearchData = () => {
-    // toast.info(`Searching for ${search}`);
-    // setIsSearchModeOn(true);};
+    const handleSearchData = () => {
+        toast.info(`Searching for ${search}`);
+        setIsSearchModeOn(true);
+    };
 
     const handlePrev = () => {
-    if (currentPage !== 1) 
-        var currPage = currentPage - 1;
+    if (currentPage !== 1) {
+        const currPage = currentPage - 1;
         setCurrentPage(currPage);
-        var from = (currPage - 1) * limit;
-        var to = (currPage * 9);
+        const from = (currPage - 1) * limit;
+        let to = (currPage * limit);
+        if (to > totalData) to = totalData;
         setSTartFrom(from);
         setEndTo(to);
+    }
     };
 
     const handleNext = () => {
-    if (currentPage !== noOfPage) 
-        var currPage = currentPage + 1;
+    if (currentPage !== noOfPage) {
+        const currPage = currentPage + 1;
         setCurrentPage(currPage);
-        var from = (currPage - 1) * limit;
-        var to = (currPage * 9);
-        if(to>totalData){
-            to=totalData;
+        const from = (currPage - 1) * limit;
+        let to = (currPage * limit);
+        if (to > totalData) {
+            to = totalData;
         }
         setSTartFrom(from);
         setEndTo(to);
+    }
     };
 
 
     return (
-        <div className='text-black p-5 w-3/4 h-screen'>
+        <div className='text-black p-5 w-3/4 h-screen '>
 
             {/* block for banner */}
-            <div className='border-2 bg-slate-900 flex justify-between w-full  text-white rounded-lg p-3'>
+            <div className='border  bg-slate-900 flex justify-between w-full  text-white rounded-lg p-2'>
 
-                <div className='border-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:bg-gradient-to-r from-blue-400 via-purple-400 to-yellow-400 hover:text-black' onClick={() => handleMembers()}>Add Member <FitnessCenterIcon /> </div>
-                <div className='border-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:bg-gradient-to-r from-blue-400 via-purple-400 to-yellow-400 hover:text-black' onClick={() => handleMemberShip()}>Membership <AddIcon /> </div>
+                <div className='border-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 hover:text-black' onClick={() => handleMembers()}>Add Member <FitnessCenterIcon /> </div>
+                <div className='border-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 hover:text-black' onClick={() => handleMemberShip()}>Membership <AddIcon /> </div>
 
             </div>
 
             {/* block for back to dashboard button */}
             <Link to={'/dashboard'}><ArrowBackIcon /> Back to Dashboard </Link>
 
-            <div className='mt-5 w-1/2 flex gap-2'>
-                <input type='text' value={search} onChange={(e) => { setSearch(e.target.value) }} className='border-2 w-full p-2 rounded-lg' placeholder='Search By Name or Mobile No' />
-                <div onClick={() => { handleSearchData() }} className='bg-slate-900 p-3 border-2 text-white rounded-lg cursor-pointer hover:bg-gradient-to-r from-blue-400 via-purple-400 to-yellow-400 hover:text-black'><SearchIcon /></div>
+            <div className='mt-3 w-1/2 flex gap-2'>
+                <input type='text' value={search} onChange={(e) => { setSearch(e.target.value) }} className='border-2 w-full p-2 rounded-2xl' placeholder='Search By Name or Mobile No' />
+                <div onClick={() => { handleSearchData() }} className='bg-slate-900 p-3 border-2 text-white rounded-2xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 hover:text-black'><SearchIcon /></div>
             </div>
 
             <div className='mt-5 text-xl flex justify-between text-slate-900'>
@@ -114,30 +122,23 @@ const Member = () => {
                         
                         <div>{startFrom + 1} - {endTo} of {totalData} Members</div>
                         
-                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:text-white hover:bg-gradient-to-r from-blue-400 via-purple-400 to-yellow-400 ${currentPage === 1 ? 'bg-gray-200 text-gray-400' : null}`} onClick={() => { handlePrev() }}><ChevronLeftIcon /></div>
+                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:text-white hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 ${currentPage === 1 ? 'bg-gray-200 text-gray-400' : null}`} onClick={() => { handlePrev() }}><ChevronLeftIcon /></div>
                         
-                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:text-white hover:bg-gradient-to-r from-indigo-500 from-blue-400 via-purple-400 to-yellow-400 ${currentPage === noOfPage ? 'bg-gray-200 text-gray-400' : null}`} onClick={() => { handleNext() }}><ChevronRightIcon /></div>
-                    </div> 
+                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:text-white hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 ${currentPage === noOfPage ? 'bg-gray-200 text-gray-400' : null}`} onClick={() => { handleNext() }}><ChevronRightIcon /></div>
+                    </div>   
             </div>
-
-        
-            <div className='mt-5 pt-3 bg-slate-100 bg-opacity-50 grid gap-5 grid-cols-3 w-full pb-5 overflow-x-auto h-[70vh]'>
-                <MemberCard/>
-                <MemberCard/>
-                <MemberCard/>
-                <MemberCard/>
-                <MemberCard/>
-                <MemberCard/>
-                <MemberCard/>
-                <MemberCard/>
-                <MemberCard/>
-
+            
+            <div className=' p-3 bg-slate-100 bg-opacity-50 grid gap-5 grid-cols-3 w-full  overflow-x-auto h-[36vh]'>
+                {data && data.length > 0 ? (
+                    data.slice(startFrom, endTo).map(member => (
+                        <MemberCard key={member._id} item={member} />
+                    ))):( <div className='col-span-3 p-4 text-center'>No members found</div>
+                )}
             </div>
 
             {
             addMembership && <Modal header="Add Membership"  handleClose={handleMemberShip} content={<AddmemberShip handleClose={handleMemberShip} />}/>
             }
-            
             {
             addMember && <Modal header={"Add New Member"} handleClose={handleMembers} content={<Addmembers/>} />
             }
@@ -147,3 +148,4 @@ const Member = () => {
 }
 
 export default Member
+

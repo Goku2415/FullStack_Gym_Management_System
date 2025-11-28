@@ -53,9 +53,7 @@ const Sidebar = () => {
           to="/dashboard"
           className={`flex items-center gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black 
             ${
-              location.pathname === "/dashboard"
-                ? "border-2 bg-linear-to-r from-sky-300  to-fuchsia-300"
-                : null
+              location.pathname === "/dashboard"? "border-2 bg-linear-to-r from-sky-300  to-fuchsia-300": null
             }`}
         >
           <div>
@@ -68,7 +66,9 @@ const Sidebar = () => {
 
         <Link
           to="/member"
-          className={`flex items-center mt-5 gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black  hover:border-2`}
+          className={`flex items-center mt-5 gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black ${
+              location.pathname === "/member"? "border-2 bg-linear-to-r from-sky-300  to-fuchsia-300": null
+            } hover:border-2`}
         >
           <div>
             <GroupIcon />

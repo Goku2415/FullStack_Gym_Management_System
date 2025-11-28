@@ -11,7 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin =()=>{
-        sessionStorage.setItem("isLogin","true");
+        sessionStorage.setItem("isLogin",true);
         navigate('/dashboard');
         
     }
