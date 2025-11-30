@@ -11,7 +11,7 @@ const MemberCard = () => {
 
   return (
     <Link
-      to={`/member`}
+      to={`/member/123`}
       className="bg-white w-84 h-60 ml-1 rounded-lg p-3 hover:bg-neutral-200  hover:shadow-2xl cursor-pointer">
         
       <div className="w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full">
