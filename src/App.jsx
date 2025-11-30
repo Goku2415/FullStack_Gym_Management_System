@@ -18,7 +18,7 @@ function App() {
       // navigate('/dashboard');
     } 
     else {
-      // setIsLogin(false);
+      setIsLogin(false);
       navigate('/');
     }
   }, [sessionStorage.getItem("isLogin")]); 

@@ -42,7 +42,6 @@ const Addmembers = () => {
 
 
         <select onChange={handleOnChangeSelect} className='border-2 w-[90%] h-12 pt-2 pb-2 border-slate-400 rounded-md placeholder:text-gray'>
-
           <option value="">Select Membership</option>
           <option value="1 Months Membership">1 Months Membership</option>
           <option value="3 Months Membership">3 Months Membership</option>
@@ -56,7 +55,7 @@ const Addmembers = () => {
           <img src="./c.jpg" alt="The shadow photo " className="rounded-lg h-40 "/>
         </div>
 
-        <div onClick={handleRegisterButton} className='p-3 border-2 w-28 text-lg h-14 text-center bg-slate-900 text-white rounded-xl cursor-pointer hover:bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500'>Register</div>
+        <div onClick={handleRegisterButton} className='p-3 border-2 w-28 text-lg h-14 text-center bg-slate-900 text-white rounded-xl cursor-pointer hover:bg-neutral-600 '>Register</div>
 
       </div>
     </div>

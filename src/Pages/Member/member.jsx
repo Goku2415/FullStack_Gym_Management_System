@@ -65,10 +65,10 @@ const Member = () => {
         setAddmember(prev => !prev);
     }
 
-    const handleSearchData = () => {
-        toast.info(`Searching for ${search}`);
-        setIsSearchModeOn(true);
-    };
+    // const handleSearchData = () => {
+    //     toast.info(`Searching for ${search}`);
+    //     setIsSearchModeOn(true);
+    // };
 
     const handlePrev = () => {
     if (currentPage !== 1) {
@@ -98,7 +98,7 @@ const Member = () => {
 
 
     return (
-        <div className='text-black p-5 w-3/4 h-screen '>
+        <div className='text-black p-5 w-3/4 h-screen bg-linear-to-r from-[rgb(116,215,220)] to-[rgb(44,110,100)] flex-col '>
 
             {/* block for banner */}
             <div className='border  bg-slate-900 flex justify-between w-full  text-white rounded-lg p-2'>
@@ -112,28 +112,32 @@ const Member = () => {
             <Link to={'/dashboard'}><ArrowBackIcon /> Back to Dashboard </Link>
 
             <div className='mt-3 w-1/2 flex gap-2'>
-                <input type='text' value={search} onChange={(e) => { setSearch(e.target.value) }} className='border-2 w-full p-2 rounded-2xl' placeholder='Search By Name or Mobile No' />
-                <div onClick={() => { handleSearchData() }} className='bg-slate-900 p-3 border-2 text-white rounded-2xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 hover:text-black'><SearchIcon /></div>
+                <input type='text' value={search} onChange={(e) => { setSearch(e.target.value) }} className='border-2  w-full p-2 rounded-2xl' placeholder='Search By Name or Mobile No' />
+                <div onClick={() => { handleSearchData() }} className='bg-slate-900 p-3 border-2 text-white rounded-2xl cursor-pointer hover:bg-slate-400 '><SearchIcon /></div>
             </div>
 
-            <div className='mt-5 text-xl flex justify-between text-slate-900'>
+            <div className='mt-2 text-xl flex text-white  justify-between '>
                 <div>Total Members</div>
                     <div className='flex gap-5'>
                         
-                        <div>{startFrom + 1} - {endTo} of {totalData} Members</div>
+                        <div className='mb-3 text-white'>{startFrom + 1} - {endTo} of {totalData} Members</div>
                         
-                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:text-white hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 ${currentPage === 1 ? 'bg-gray-200 text-gray-400' : null}`} onClick={() => { handlePrev() }}><ChevronLeftIcon /></div>
+                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 hover:text-white bg-blue ${currentPage === 1 ? 'bg-gray-400 ' : 'bg-[rgb(62,87,110)]' }`} onClick={() => { handlePrev() }}><ChevronLeftIcon /></div>
                         
-                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:text-white hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 ${currentPage === noOfPage ? 'bg-gray-200 text-gray-400' : null}`} onClick={() => { handleNext() }}><ChevronRightIcon /></div>
+                        <div className={`w-8 h-8 cursor-pointer border-2 flex items-center justify-center hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 hover:text-white  hover:bg-gray ${currentPage === noOfPage ? 'bg-gray-400 ' : 'bg-[rgb(62,87,110)]'}`} onClick={() => { handleNext() }}><ChevronRightIcon /></div>
                     </div>   
             </div>
             
-            <div className=' p-3 bg-slate-100 bg-opacity-50 grid gap-5 grid-cols-3 w-full  overflow-x-auto h-[36vh]'>
-                {data && data.length > 0 ? (
-                    data.slice(startFrom, endTo).map(member => (
-                        <MemberCard key={member._id} item={member} />
-                    ))):( <div className='col-span-3 p-4 text-center'>No members found</div>
-                )}
+            <div className=' p-3 bg-linear-to-r from-gray-400  bg-opacity-50 grid gap-5 grid-cols-3 rounded-lg  overflow-x-auto h-[72vh]'>
+                <MemberCard />
+                <MemberCard />
+                <MemberCard />
+                <MemberCard />
+                <MemberCard />
+                <MemberCard />
+                <MemberCard />
+                <MemberCard />
+                <MemberCard />
             </div>
 
             {

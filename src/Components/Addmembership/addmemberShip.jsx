@@ -3,14 +3,14 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
 const AddmemberShip = ({ handleClose }) => {
-  // const [inputField, setInputField] = useState({ months: "", price: "" });
-  // const [membership, setMembership] = useState([]);
+  const [inputField, setInputField] = useState({ months: "", price: "" });
+  const [membership, setMembership] = useState([]);
 
   // const handleOnChange = (event, name) => {
   //     setInputField({ ...inputField, [name]: event.target.value })
   // }
 
-  //  const fetchMemberships = async () => {
+  // const fetchMemberships = async () => {
   // try {
   //   const res = await axios.get("http://localhost:4000/membership/get"); // adapt endpoint
   //   setList(res.data.data || []);
@@ -24,7 +24,7 @@ const AddmemberShip = ({ handleClose }) => {
   //     fetchMemberships()
   // }, []);
 
-  // const [membershipList, setMembershipList] = useState([]);
+  const [membershipList, setMembershipList] = useState([]);
 
   // const handleAddmembership = () => {
   // toast.success(`Added ${inputField.months} month(s) membership`);
@@ -38,26 +38,26 @@ const AddmemberShip = ({ handleClose }) => {
 
   return (
     <div className="text-black">
-      <div className="flex flex-wrap gap-5 items-center justify-center">
+      <div className="flex flex-wrap gap-5  items-center justify-center grid-cols-2 ">
         
         {/* Block for membership Details */}
-        <div className="text-lg bg-slate-800 text-white border-2 pl-2 pr-2 flex-col gap-3 justify-between pt- ">
+        <div className="text-lg bg-slate-800 text-white rounded-lg border-2 pl-2 pr-2 flex-col justify-between p-1 ">
           <div>1 Month Membership </div>
           <div>Rs 1000 </div>
         </div>
 
         {/* Block for membership Details */}
-        <div className="text-lg bg-slate-800 text-white border-2 pl-2 pr-2 flex-col gap-3 justify-between pt- ">
+        <div className="text-lg bg-slate-800 text-white border-2 rounded-lg pl-2 pr-2 flex-col  justify-between p-1 ">
           <div>3 Month Membership </div>
           <div>Rs 3500 </div>
         </div>
         {/* Block for membership Details */}
-        <div className="text-lg bg-slate-800 text-white border-2 pl-2 pr-2 flex-col gap-3 justify-between pt- ">
+        <div className="text-lg bg-slate-800 text-white border-2 pl-2 pr-2 rounded-lg flex-col justify-between p-1 ">
           <div>6 Month Membership </div>
           <div>Rs 6000 </div>
         </div>
         {/* Block for membership Details */}
-        <div className="text-lg bg-slate-800 text-white border-2 pl-2 pr-2 flex-col gap-3 justify-between pt- ">
+        <div className="text-lg bg-slate-800 text-white border-2 pl-2 pr-2 flex-col rounded-lg justify-between p-1 ">
           <div>12 Month Membership </div>
           <div>Rs 10000 </div>
         </div>
@@ -85,7 +85,7 @@ const AddmemberShip = ({ handleClose }) => {
           onClick={() => {
             AddmemberShip();
           }}
-          className="text-lg border-2 p-1 w-auto mt-0 rounded-xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-fuchsia-300"
+          className="text-lg border-2 p-1 w-auto mt-0 rounded-xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-[rgb(116,215,220)]"
         > Add +
         </div>
       </div>

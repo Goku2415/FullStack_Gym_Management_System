@@ -61,7 +61,7 @@ const Dashboard = () => {
 
 
         {/* this is the card block */}
-        <Link to={`/specific/monthly`} onClick={()=>handleOnClickMenu("monthlyJoined")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer '>
+        <Link to={`/specific/monthlyjoined`} onClick={()=>handleOnClickMenu("Monthly_Joined")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer '>
 
           <div className='py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl '>
             <img src="./g.webp" alt="" className="w-60 pt-4 mx-auto h-40" />
@@ -70,7 +70,7 @@ const Dashboard = () => {
         </Link>
 
         {/* this is the card block */}
-       <Link  to={`/specific/Expiring within 2 weeks`} onClick={()=>handleOnClickMenu("3 day expire")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer'>
+       <Link  to={`/specific/Expiring_within_2_weeks`} onClick={()=>handleOnClickMenu("Expiring_within_2_weeks")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer'>
 
           <div className='py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl '>
             <img src="./w.webp" alt="renew img" className="w-60 mx-auto h-40 pt-4" />
@@ -79,7 +79,7 @@ const Dashboard = () => {
         </Link>
 
         {/* this is the card block */}
-        <Link to={'/specific/expire-with-in 4-7-days'} onClick={()=>handleOnClickMenu("4-7 DaysExpire")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer '>
+        <Link to={'/specific/expire_with_in_4_7_days'} onClick={()=>handleOnClickMenu("Expiry in 4-7 days")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer '>
 
           <div className='py-1  flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl '>
             <img src="./r.webp" alt="4-7 days img" className="w-60 mx-auto h-40 pt-4" />
@@ -100,7 +100,7 @@ const Dashboard = () => {
 
 
         {/* this is the card block */}
-        <Link to={'/specific/inactive_Users'} onClick={()=>handleOnClickMenu("Inactive")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer'>
+        <Link to={'/specific/inactive_Users'} onClick={()=>handleOnClickMenu("Inactive_members")} className='w-full h-[200px] border-2 bg-[rgb(63,87,111)]  rounded-lg cursor-pointer'>
 
           <div className='py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl'>
             <img src="./m.webp" alt="" className="w-60 mx-auto h-40 pt-4" />
