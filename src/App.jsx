@@ -6,6 +6,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Member from './Pages/Member/member';
 import GeneralUser from './Pages/GeneralUser/generalUser';
+import MembersDetails from './Pages/memberDetail/memberDetail';
 
 function App() {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ function App() {
         <Route path='/member' element={<Member />} />
         <Route path='/specific/:page' element={<GeneralUser />} />
         {/* specific/:page is a dynamic routing for the routes that means after the specific/ the routes will be set during the run time, that is when a section will be clicked then only full route will be selected. eg: when clicked on monthly joined the full route will be specific/monthly joined..... */}
+        <Route path='/member/:id' element={<MemberDetail />} />
       </Routes>
     </div>
   );
