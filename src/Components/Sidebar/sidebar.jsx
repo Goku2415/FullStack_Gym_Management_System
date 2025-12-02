@@ -27,7 +27,7 @@ const Sidebar = () => {
   }, []);
 
   const handleLogout = async () => {
-    localStorage.clear();
+    sessionStorage.clear();
     navigate("/");
   };
 
@@ -76,7 +76,7 @@ const Sidebar = () => {
           <div>Members</div>
         </Link>
 
-        <div onClick={handleLogout} className="flex items-center mt-5 gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black  hover:border-2">
+        <div onClick={()=>{(handleLogout())}} className="flex items-center mt-5 gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black  hover:border-2">
           <LogoutIcon/>
           <div className="">Logout</div>
 

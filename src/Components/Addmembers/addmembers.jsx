@@ -52,7 +52,7 @@ const Addmembers = () => {
         <input type='file'/>
 
         <div className="">
-          <img src="./c.jpg" alt="The shadow photo " className="rounded-lg h-40 "/>
+          <img src="./add.jpg" alt="The shadow photo " className="rounded-lg h-40 "/>
         </div>
 
         <div onClick={handleRegisterButton} className='p-3 border-2 w-28 text-lg h-14 text-center bg-slate-900 text-white rounded-xl cursor-pointer hover:bg-neutral-600 '>Register</div>

@@ -13,6 +13,7 @@ const Login = () => {
     const handleLogin =()=>{
         sessionStorage.setItem("isLogin",true);
         navigate('/dashboard');
+        //used the session storage to store the login state of the user and during logout all the data stored in the session storage will be deleted
         
     }
 
