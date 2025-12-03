@@ -7,7 +7,7 @@ const Home = () => {
   return (
   
   <div className="w-full h-screen ">
-      <div className='w-full bg-cover  flex justify-center h-full mb-20 bg-[url("./47.jpg")] '>
+      <div className='w-full bg-cover  flex justify-center h-full mb-20 bg-[url("/47.jpg")] '>
         <div className="w-full flex gap-48 ">
           <Login />
           <SignUp />

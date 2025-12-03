@@ -8,6 +8,7 @@ const ForgotPassword = () => {
     const [loader,setLoader] = useState(false)
     const [contentVal,setContentValue] = useState("Submit Your Email")
 
+
     const [inputField, setInputField] = useState({ email: "", otp: "", newPassword: "" });
 
     const handleSubmit = () => {
@@ -24,18 +25,24 @@ const ForgotPassword = () => {
         }
     }
 
+        const handleChange = (event, name)=>{
+            setInputField({...inputField, [name]:event.target.value})
+        } 
+        console.log(inputField);
+
     return (
         <div className='w-full mx-10   rounded-lg text-black '>
+ 
             <div className="w-[60vh]  mb-5 ">
                 <div>Enter Your Email</div>
-                <input type="text" className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter Email' />
+                <input type="text" value={inputField.email} onChange={(event)=>{handleChange(event,"email")}} className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter Email' />
             </div>
            
 
            { 
                 emailSubmit &&  <div className="w-[60vh]  mb-5 ">
                 <div>Enter your OTP</div>
-                <input type="text" className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter OTP' />
+                <input type="text" value={inputField.otp} onChange={(event)=>{handleChange(event,"otp")}} className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter OTP' />
             </div>
             }
 
@@ -43,7 +50,7 @@ const ForgotPassword = () => {
            {
             otpValidate &&  <div className="w-[60vh]  mb-5 ">
                 <div>Enter New Password</div>
-                <input type="text" className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter New Password' />
+                <input type="text" value={inputField.password} onChange={(event)=>{handleChange(event,"New Password")}} className=" w-full p-2 rounded-lg border-2 border-slate-400  " placeholder='Enter New Password' />
             </div>
             }
             
