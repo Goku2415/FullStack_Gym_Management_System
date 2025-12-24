@@ -3,6 +3,7 @@ const Gym = require('../Modals/gym')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 
 exports.register = async (req, res) => {
@@ -31,6 +32,12 @@ exports.register = async (req, res) => {
 
 }
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'lax',
+}
+
 exports.login = async (req, res) => {
 
     try {
@@ -40,7 +47,8 @@ exports.login = async (req, res) => {
 
         if (gym && await bcrypt.compare(password, gym.password)) {
 
-
+            const token = jwt.sign({gym_id: gym._id}, process.env.JWT_SecretKey)
+            res.cookie("cookieToken", token, cookieOptions);
 
             res.json({ message: "logged in successfully", success: "true", gym });
         } else {
@@ -73,7 +81,7 @@ exports.sendOtp = async (req, res) => {
             const token = buffer.readUInt32BE(0) % 900000 + 100000;
             const hashedOtp = crypto
                 .createHash("sha256")
-                .update(otp.toString())
+                .update(token.toString())
                 .digest("hex");
             gym.resetPasswordToken = hashedOtp;
             gym.resetPasswordExpires = Date.now() + 600000; // 10 minutes
@@ -85,10 +93,10 @@ exports.sendOtp = async (req, res) => {
 
 
             const mailOptions = {
-                from: "maheshsinghgaria24@gmail.com",
+                from: process.env.SENDER_EMAIL,
                 to: email,
                 subject: "Password Reset OTP",
-                text: `Your OTP for password reset is ${hashedOtp}. It is valid for 10 minutes.`
+                text: `Your OTP for password reset is ${token}. It is valid for 10 minutes.`
             }
 
             transporter.sendMail(mailOptions, (error, info) => {
@@ -116,10 +124,14 @@ exports.checkOtp = async (req, res) => {
 
     try {
         const { email, otp } = req.body;
+        const hashedOtp = crypto
+            .createHash("sha256")
+            .update(otp.toString())
+            .digest("hex");
         const gym = await Gym.findOne({
             email,
-            resetPasswordToken: otp,
-            reserPasswordExpires: { $gt: Date.now() }
+            resetPasswordToken: hashedOtp,
+            resetPasswordExpires: { $gt: Date.now() }
         });
 
         if (!gym) {
@@ -136,4 +148,33 @@ exports.checkOtp = async (req, res) => {
         })
     }
 
-}    
+}
+
+
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const { email, newPassword } = req.body;
+        const gym = await Gym.findOne({ email });
+
+        if (!gym) {
+            return res.status(400).json({ error: "Some technical issue, please try again" });
+        }
+        else{
+            const hashedPassword = await bcrypt.hash(newPassword, 10);
+            gym.password = hashedPassword;
+            gym.resetPasswordToken = undefined;
+            gym.resetPasswordExpires = undefined;
+
+            await gym.save();
+            res.status(200).json({ message: "Password reset successfully" });
+        }
+    }catch (err) {
+        res.status(500).json({
+            error: "Server Error"
+        })
+    }
+}
+
+
+
