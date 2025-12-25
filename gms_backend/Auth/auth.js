@@ -1,4 +1,4 @@
-const Gym = require("../gms_backend/Modals/gym");
+const Gym = require("../Modals/gym");
 const jwt = require("jsonwebtoken");
 
 const auth = async (req, res, next)=>{

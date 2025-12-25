@@ -180,9 +180,11 @@ exports.resetPassword = async (req, res) => {
 
 
 
-
-
-exports.checking = (req, res)=>{
-    console.log("hello");
-    res.send("checked");
+exports.logout = async (req, res) => {
+    try {
+        res.clearCookie("cookieToken", cookieOptions).json({message: "logged out successfully"});
+    }catch(err){
+        res.status(500).json({error: "server error"})
+    }   
+    return res.status(200).json({message: "logged out successfully"});
 }

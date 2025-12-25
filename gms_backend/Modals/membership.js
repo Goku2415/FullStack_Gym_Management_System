@@ -16,5 +16,4 @@ const membershipSChema = mongoose.Schema({
     }
 })
 
-const modalMembership = mongoose.Model("membership",membershipSChema)
-module.exports = modalMembership
+module.exports = mongoose.model("membership",membershipSChema)

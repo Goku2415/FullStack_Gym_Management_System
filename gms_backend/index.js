@@ -10,9 +10,14 @@ app.use(express.json());
 app.use(cookieParser());
 require("./DBConn/conn");
 
+
 const GymRoutes = require('./Routes/gym');
+const membershipRoutes = require('./Routes/membership');
+
+
 
 app.use('/auth', GymRoutes);
+app.use('/plans', membershipRoutes);
 
 
 app.get("/", (req,res)=>{
