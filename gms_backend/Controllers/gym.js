@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
         const isExist = await Gym.findOne({ userName });
 
         if (isExist) {//if user already exist.
-            res.status(400).json({
+            return res.status(400).json({
                 error: "Username Already Exist, Please try with other username"
             })
         } else {
@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
             const newGym = new Gym({ userName, password: hashedPassword, gymName, profilePic, email });
             await newGym.save();
 
-            res.status(201).json({ message: "User registered successfully", success: "yes", data: newGym });
+            return res.status(201).json({ message: "User registered successfully", success: "yes", data: newGym });
         }
     } catch (err) {
         res.status(500).json({ error: "error msg" })
@@ -50,9 +50,11 @@ exports.login = async (req, res) => {
             const token = jwt.sign({gym_id: gym._id}, process.env.JWT_SecretKey)
             res.cookie("cookieToken", token, cookieOptions);
 
-            res.json({ message: "logged in successfully", success: "true", gym });
+            return res.json({ message: "logged in successfully", success: "true", gym });
+
         } else {
-            res.status(400).json({ error: "invalid credentials" });
+            
+            return res.status(400).json({ error: "invalid credentials" });
         }
 
 
@@ -101,9 +103,9 @@ exports.sendOtp = async (req, res) => {
 
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
-                    res.status(500).json({ error: "server error", errorMsg: error });
+                    return res.status(500).json({ error: "server error", errorMsg: error });
                 } else {
-                    res.status(200).json({ message: "OTP sent to your email" });
+                    return res.status(200).json({ message: "OTP sent to your email" });
                 }
             });
 
@@ -137,7 +139,7 @@ exports.checkOtp = async (req, res) => {
         if (!gym) {
             return res.status(400).json({ error: "Invalid or expired OTP" });
         }
-        res.status(200).json({ message: "OTP verified successfully" });
+        return res.status(200).json({ message: "OTP verified successfully" });
 
 
 
@@ -167,7 +169,7 @@ exports.resetPassword = async (req, res) => {
             gym.resetPasswordExpires = undefined;
 
             await gym.save();
-            res.status(200).json({ message: "Password reset successfully" });
+            return res.status(200).json({ message: "Password reset successfully" });
         }
     }catch (err) {
         res.status(500).json({
@@ -178,3 +180,9 @@ exports.resetPassword = async (req, res) => {
 
 
 
+
+
+exports.checking = (req, res)=>{
+    console.log("hello");
+    res.send("checked");
+}

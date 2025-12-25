@@ -26,7 +26,7 @@ app.post("/add/user", (req,res)=>{
     res.send("user added successfully at 4000");
 })
 
-app.listen(PORT, (req,res)=>{
-    console.log(`app is listning at port ${PORT} `);
+app.listen(PORT, ()=>{
+    console.log(`app is listening at port ${PORT} `);
 
 })
