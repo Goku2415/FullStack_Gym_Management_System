@@ -6,3 +6,5 @@ mongoose.connect('mongodb://localhost:27017/gymBackend')
 .catch(err=>{
         console.log("DB connection failed", err);
     })
+
+module.exports = mongoose;
