@@ -13,11 +13,12 @@ require("./DBConn/conn");
 
 const GymRoutes = require('./Routes/gym');
 const membershipRoutes = require('./Routes/membership');
-
+const memberRoutes = require('./Routes/member');
 
 
 app.use('/auth', GymRoutes);
 app.use('/plans', membershipRoutes);
+app.use('/members', memberRoutes);
 
 
 app.get("/", (req,res)=>{
@@ -26,8 +27,6 @@ app.get("/", (req,res)=>{
 
 app.post("/add/user", (req,res)=>{
     const {name , age} = req.body; 
-    console.log(name);
-    console.log(age);
     res.send("user added successfully at 4000");
 })
 

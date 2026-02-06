@@ -32,8 +32,13 @@ exports.addMembership = async (req, res) => {
 
 exports.getMemberships = async (req, res) => {
     try{
+
+        const loggedInId  = req.gym;
+
         const memberships = await Membership.find({gym: req.gym._id});
         res.status(200).json({message: "Memberships retrieved successfully", membership: memberships});
+
+        
     }catch(err){
         console.log('err')
         res.status(500).json({error: "server error"})

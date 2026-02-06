@@ -183,8 +183,8 @@ exports.resetPassword = async (req, res) => {
 exports.logout = async (req, res) => {
     try {
         res.clearCookie("cookieToken", cookieOptions).json({message: "logged out successfully"});
+        return res.status(200).json({message: "logged out successfully"});
     }catch(err){
         res.status(500).json({error: "server error"})
     }   
-    return res.status(200).json({message: "logged out successfully"});
 }

@@ -36,8 +36,8 @@ const memberSchema = mongoose.Schema({
         type:Date,
         required:true        
     }
-})
+},{timestamps:true});
+//timestamps: true will automatically add createdAt and updatedAt fields to the schema at the terminal where the history of created and updated timing will be stored.
 
-
-const memberModel = mongoose.Model("member",memberSchema);
+const memberModel = mongoose.model("member",memberSchema);
 module.exports = memberModel;
