@@ -1,41 +1,84 @@
-import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom'
-import {toast,ToastContainer} from 'react-toastify';
-
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 
 const Login = () => {
-    
-    const [loginField,setLoginField] = useState({"userName":"", "password":""});
+  const [loginField, setLoginField] = useState({ userName: "", password: "" });
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleLogin =()=>{
-        sessionStorage.setItem("isLogin",true);
-        navigate('/dashboard');
-        //used the session storage to store the login state of the user and during logout all the data stored in  the session storage will be deleted
-        
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/auth/login",
+        loginField,
+        { withCredentials: true },
+      );
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userName", res.data.gym.userName);
+      localStorage.setItem("gymName", res.data.gym.gymName);
+      localStorage.setItem("profilePic", res.data.gym.profilePic);
+      localStorage.setItem("isLogin", "true");
+
+      navigate("/dashboard");
+      window.location.reload();
+    } catch (err) {
+      const errorMessage = err.response?.data?.error || err.message;
+
+      toast.error(errorMessage);
+      console.log(errorMessage);
     }
-    
-
-   const handleOnChange = (event ,name) => {
-    setLoginField(prev => ({...prev , [name]:event.target.value}));
   };
 
-  console.log(loginField);
-  
- 
-    return (
-        <div className='rounded-lg  p-10 mt-44 ml-24 w-[60vh]  bg-slate-200 opacity-80 h-fit'>
-            <div className='font-sans text-black text-center text-3xl '>Login</div>
+  const handleOnChange = (event, name) => {
+    setLoginField((prev) => ({ ...prev, [name]: event.target.value }));
+  };
 
-            <input name="userName" value={loginField.userName} onChange={(event)=>{handleOnChange(event,"userName")}} type='text' className='w-full my-10 p-2 hover:bg-white text-black rounded-lg border-2 cursor-pointer ' placeholder='Enter Username' />
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleLogin();
+      }}
+      className="rounded-lg p-10 mt-44 ml-24  bg-slate-200 opacity-80 h-fit w-[58vh]"
+    >
+      <div className="font-sans text-black text-center text-3xl  ">
+        Login
+      </div>
 
-            <input name="password" value={loginField.password} onChange={(event)=>{handleOnChange(event,"password")}} type='password' className='w-full mb-10 p-2 rounded-lg hover:bg-white border-2 cursor-pointer' placeholder='Enter Password' />
+      <input
+        name="userName"
+        value={loginField.userName}
+        onChange={(event) => {
+          handleOnChange(event, "userName");
+        }}
+        type="text"
+        className="w-full my-10 p-2 hover:bg-white text-black rounded-lg border-2 cursor-pointer "
+        placeholder="Enter Username"
+      />
 
-            <div className='p-2 w-[40%] border-2 bg-slate-800 mx-auto rounded-lg text-white text-center text-lg hover:bg-white hover:text-black font-semibold cursor-pointer' onClick={()=>{handleLogin()}}>Login</div>
-        </div>
-    )
-}
+      <input
+        name="password"
+        value={loginField.password}
+        onChange={(event) => {
+          handleOnChange(event, "password");
+        }}
+        type="password"
+        className="w-full mb-10 p-2 rounded-lg hover:bg-white border-2 cursor-pointer"
+        placeholder="Enter Password"
+      />
 
-export default Login
+      <button
+        type="submit"
+        className="p-2 w-[40%] border-2 bg-slate-800 mx-auto rounded-lg text-white text-center text-lg hover:bg-white hover:text-black font-semibold cursor-pointer"
+      >
+        Login
+      </button>
+      <ToastContainer />
+    </form>
+  );
+};
+
+export default Login;

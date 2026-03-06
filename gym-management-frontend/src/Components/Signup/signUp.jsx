@@ -42,7 +42,7 @@ const SignUp = () => {
         data.append("upload_preset", "gym-management")
 
         try{
-            const response = await axios.post("https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",data);
+            const response = await axios.post("http://api.cloudinary.com/v1_1/dwapgarrx/image/upload",data);
             const imageUrl = response.data.secure_url;
             setInputField({...inputField, ['profilePic']:imageUrl});
             setLoaderImage (false);//the loader for the image to stop the loader once the image is uploaded
@@ -53,21 +53,26 @@ const SignUp = () => {
     }
     
         
-    
 
-    const handleRegister = () => {
-        if (!inputField.email || !inputField.gymName || !inputField.userName || !inputField.password) {
-            toast.error("Please fill in all required fields");
-            return;
-        }
-        // Here you can add registration logic, e.g., API call
-        toast.success("Registration successful!");
-        // Example: navigate('/dashboard');
-        // navigate('/dashboard');
-    };
+
+    const handleRegister = async () => {
+    try {
+        const res = await axios.post(
+            "http://localhost:4000/auth/register",inputField);
+
+        toast.success(res.data.message);
+        navigate('/dashboard');
+
+    } catch (err) {
+        console.log(err); // VERY IMPORTANT
+        const errorMessage = err.res.data.error; 
+        toast.error(errorMessage);
+    }
+};
+
 
     return (
-        <div className='customSignup w-[60vh] p-8 mt-44  ml-44 bg-slate-200 opacity-80 h-[450px] overflow-y-auto rounded-lg text-black '>
+        <div className='customSignup w-[60vh] p-8 mt-44  ml-44 bg-slate-200 opacity-80 h-112.5 overflow-y-auto rounded-lg text-black '>
             <ToastContainer />
             <div className='font-sans text-black text-center text-3xl mb-6'>Register Your Gym</div>
 
@@ -104,4 +109,17 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+export default SignUp 
+
+
+
+
+
+
+
+
+
+
+
+
+

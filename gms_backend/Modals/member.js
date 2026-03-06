@@ -26,7 +26,6 @@ const memberSchema = mongoose.Schema({
     },
     status:{
         type:String,
-        default:"ACtive"
     },
     lastPayment:{
         type:Date,

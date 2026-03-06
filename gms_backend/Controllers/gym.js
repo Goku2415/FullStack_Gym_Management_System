@@ -42,23 +42,29 @@ exports.login = async (req, res) => {
 
     try {
         const { userName, password } = req.body;
+        console.log("Incoming Body:", req.body);
         const gym = await Gym.findOne({ userName });
-
+        console.log("Found Gym:", gym);
 
         if (gym && await bcrypt.compare(password, gym.password)) {
 
-            const token = jwt.sign({gym_id: gym._id}, process.env.JWT_SecretKey)
+            const token = jwt.sign({ gym_id: gym._id }, process.env.JWT_SecretKey);
+
+            const isMatch = await bcrypt.compare(password, gym.password);
+            console.log("Password Match:", isMatch);
+
             res.cookie("cookieToken", token, cookieOptions);
 
-            return res.json({ message: "logged in successfully", success: "true", gym });
+            res.json({ message: "logged in successfully", success: true, gym, token });
 
         } else {
-            
+            console.log("Password mismatch or user not found");
             return res.status(400).json({ error: "invalid credentials" });
         }
 
 
     } catch (err) {
+        console.log("Login Error:", err);
         res.status(500).json({ error: "server error" })
     }
 
@@ -162,7 +168,7 @@ exports.resetPassword = async (req, res) => {
         if (!gym) {
             return res.status(400).json({ error: "Some technical issue, please try again" });
         }
-        else{
+        else {
             const hashedPassword = await bcrypt.hash(newPassword, 10);
             gym.password = hashedPassword;
             gym.resetPasswordToken = undefined;
@@ -171,7 +177,7 @@ exports.resetPassword = async (req, res) => {
             await gym.save();
             return res.status(200).json({ message: "Password reset successfully" });
         }
-    }catch (err) {
+    } catch (err) {
         res.status(500).json({
             error: "Server Error"
         })
@@ -182,9 +188,9 @@ exports.resetPassword = async (req, res) => {
 
 exports.logout = async (req, res) => {
     try {
-        res.clearCookie("cookieToken", cookieOptions).json({message: "logged out successfully"});
-        return res.status(200).json({message: "logged out successfully"});
-    }catch(err){
-        res.status(500).json({error: "server error"})
-    }   
+        res.clearCookie("cookieToken", cookieOptions);
+        return res.status(200).json({ message: "logged out successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "server error" })
+    }
 }

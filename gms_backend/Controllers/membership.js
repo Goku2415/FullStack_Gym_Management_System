@@ -18,7 +18,9 @@ exports.addMembership = async (req, res) => {
                 price
             });
             await newMembership.save();
-            res.status(200).json({message: "Membership plan added successfully", data: newMembership});
+            res.status(200).json({
+                message: "Membership plan added successfully", data: newMembership
+            });
         }
 
     }catch(err){

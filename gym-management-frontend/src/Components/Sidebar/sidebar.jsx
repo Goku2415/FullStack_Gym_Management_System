@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Group";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Sidebar = () => {
   const [greeting, setGreeting] = useState("");
@@ -27,15 +27,18 @@ const Sidebar = () => {
   }, []);
 
   const handleLogout = async () => {
+    localStorage.clear();
     sessionStorage.clear();
     navigate("/");
   };
 
   return (
     <div className="w-1/4 h-screen bg-[rgb(57,93,101)]  text-white p-8 font-extralight">
-      <div className="text-center text-4xl">Hell_To_Heaven</div>
+      <div className="text-center text-4xl">
+        {localStorage.getItem("gymName")}
+      </div>
       <div className="flex gap-5 my-5">
-        <div className="w-[100px] h-[100px] rounded-lg ">
+        <div className="w-25 h-25 rounded-lg ">
           <img
             src="./me.jpg"
             alt="My pic"
@@ -53,13 +56,14 @@ const Sidebar = () => {
           to="/dashboard"
           className={`flex items-center gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black 
             ${
-              location.pathname === "/dashboard"? "border-2 bg-linear-to-r from-sky-300  to-fuchsia-300": null
+              location.pathname === "/dashboard"
+                ? "border-2 bg-linear-to-r from-sky-300  to-fuchsia-300"
+                : null
             }`}
         >
           <div>
             <HomeIcon />
           </div>
-
 
           <div>Dashboard</div>
         </Link>
@@ -67,8 +71,10 @@ const Sidebar = () => {
         <Link
           to="/member"
           className={`flex items-center mt-5 gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black ${
-              location.pathname === "/member"? "border-2 bg-linear-to-r from-sky-300  to-fuchsia-300": null
-            } hover:border-2`}
+            location.pathname === "/member"
+              ? "border-2 bg-linear-to-r from-sky-300  to-fuchsia-300"
+              : null
+          } hover:border-2`}
         >
           <div>
             <GroupIcon />
@@ -76,11 +82,14 @@ const Sidebar = () => {
           <div>Members</div>
         </Link>
 
-        <div onClick={()=>{(handleLogout())}} className="flex items-center mt-5 gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black  hover:border-2">
-          <LogoutIcon/>
+        <div
+          onClick={() => {
+            handleLogout();
+          }}
+          className="flex items-center mt-5 gap-8 font-semibold text-xl bg-slate-800 p-3 rounded-xl cursor-pointer hover:bg-linear-to-r from-sky-300  to-fuchsia-300 hover:text-black  hover:border-2"
+        >
+          <LogoutIcon />
           <div className="">Logout</div>
-
-
         </div>
       </div>
     </div>

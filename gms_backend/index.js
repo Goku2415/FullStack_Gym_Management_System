@@ -3,12 +3,19 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 require("./DBConn/conn");
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))// I have enables cors to share data between frontend and backend which are running on different ports and i have manually told that allow the data sharing between port 3000 form frontend. 
 
 
 const GymRoutes = require('./Routes/gym');
