@@ -69,8 +69,8 @@ const GeneralUser = () => {
 
   return (
     
-    <div className="text-black h-screen p-3 w-3/4 flex-col">
-      <div className="border-2 bg-slate-800 flex justify-between w-full text-white rounded-lg p-3">
+    <div className="text-black p-3 md:p-4 w-full md:flex-1 min-h-screen flex flex-col">
+      <div className="border bg-slate-800 flex items-center w-full text-white rounded-lg p-3">
         <Link
           to={"/dashboard"}
           className="border-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer"
@@ -80,10 +80,10 @@ const GeneralUser = () => {
         </Link>
       </div>
 
-      <div className="mt-5 text-xl text-slate-900 font-semibold">{header}</div>
+      <div className="mt-5 text-lg sm:text-xl md:text-2xl text-slate-900 font-semibold">{header}</div>
 
-      <div className="bg-slate-500 p-4 mt-2 rounded-lg overflow-y-auto h-[80%]">
-        <div className="gap-5 flex flex-wrap justify-center items-center">
+      <div className="bg-slate-500 p-4 mt-2 rounded-lg overflow-y-auto min-h-[60vh]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {data.map((item, index) => (
             <MemberCard key={index} item={item} />
           ))}

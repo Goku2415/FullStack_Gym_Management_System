@@ -15,34 +15,35 @@ function App() {
   const isLoggedIn = !!token;
 
   return (
-    <div className="flex">
+    <div className="flex flex-col md:flex-row min-h-screen">
       {isLoggedIn && location.pathname !== "/" && <Sidebar />}
+      <div className="flex-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
+          <Route
+            path="/dashboard"
+            element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
+          />
 
-        <Route
-          path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
-        />
+          <Route
+            path="/member"
+            element={isLoggedIn ? <Member /> : <Navigate to="/" replace />}
+          />
 
-        <Route
-          path="/member"
-          element={isLoggedIn ? <Member /> : <Navigate to="/" replace />}
-        />
+          <Route
+            path="/specific/:page"
+            element={isLoggedIn ? <GeneralUser /> : <Navigate to="/" replace />}
+          />
 
-        <Route
-          path="/specific/:page"
-          element={isLoggedIn ? <GeneralUser /> : <Navigate to="/" replace />}
-        />
-
-        <Route
-          path="/member/:id"
-          element={
-            isLoggedIn ? <MembersDetails /> : <Navigate to="/" replace />
-          }
-        />
-      </Routes>
+          <Route
+            path="/member/:id"
+            element={
+              isLoggedIn ? <MembersDetails /> : <Navigate to="/" replace />
+            }
+          />
+        </Routes>
+      </div>
     </div>
   );
 }

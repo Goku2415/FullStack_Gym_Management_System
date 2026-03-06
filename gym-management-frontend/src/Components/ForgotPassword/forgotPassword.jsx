@@ -15,7 +15,6 @@ const ForgotPassword = () => {
     newPassword: "",
   });
 
-  
   const handleSubmit = () => {
     if (!emailSubmit) {
       sendOtp();
@@ -26,8 +25,6 @@ const ForgotPassword = () => {
     }
   };
 
-
-
   const verifyOTP = async () => {
     try {
       setLoader(true);
@@ -37,11 +34,12 @@ const ForgotPassword = () => {
         {
           email: inputField.email,
           otp: inputField.otp,
-        },
+        }
       );
 
       setOtpValidate(true);
       setContentValue("Change Password");
+
       toast.success(res.data.message);
       setLoader(false);
     } catch (err) {
@@ -52,10 +50,8 @@ const ForgotPassword = () => {
 
       toast.error(errorMessage);
       setLoader(false);
-    }   
+    }
   };
-
-
 
   const sendOtp = async () => {
     try {
@@ -63,99 +59,122 @@ const ForgotPassword = () => {
 
       const res = await axios.post(
         "http://localhost:4000/auth/reset-password/sendOtp",
-        { email: inputField.email },
+        { email: inputField.email }
       );
 
       setEmailSubmit(true);
       setContentValue("Verify OTP");
+
       toast.success(res.data.message);
       setLoader(false);
     } catch (err) {
-      const errorMessage = err.response?.data?.error || "Something went wrong";
-      
+      const errorMessage =
+        err.response?.data?.error || "Something went wrong";
+
       toast.error(errorMessage);
       setLoader(false);
     }
   };
 
+  const changePassword = async () => {
+    try {
+      setLoader(true);
 
-    const changePassword = async () => {
-      try {
-        setLoader(true);
-        const res = await axios.post(
-          "http://localhost:4000/auth/reset-password", {email:inputField.email,newPassword:inputField.newPassword}
-        );
+      const res = await axios.post(
+        "http://localhost:4000/auth/reset-password",
+        {
+          email: inputField.email,
+          newPassword: inputField.newPassword,
+        }
+      );
 
-        toast.success(res.data.message);
-        setLoader(false);
-      } catch (err) {
-        const errorMessage = err.response?.data?.error || "Unable to change password";
-        toast.error(errorMessage);
-        setLoader(false);
-      }
-    };
+      toast.success(res.data.message);
+      setLoader(false);
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.error || "Unable to change password";
 
-
+      toast.error(errorMessage);
+      setLoader(false);
+    }
+  };
 
   const handleChange = (event, name) => {
     setInputField({ ...inputField, [name]: event.target.value });
   };
 
-
-
   return (
-    <div className="w-full mx-10   rounded-lg text-black ">
-      <div className="w-[60vh]  mb-5 ">
-        <div>Enter Your Email</div>
-        <input
-          type="text"
-          value={inputField.email}
-          onChange={(event) => {
-            handleChange(event, "email");
-          }}
-          className=" w-full p-2 rounded-lg border-2 border-slate-400  "
-          placeholder="Enter Email"
-        />
-      </div>
+    <div className="w-full max-w-md mx-auto">
 
-      {emailSubmit && (
-        <div className="w-[60vh]  mb-5 ">
-          <div>Enter your OTP</div>
+      <div className="space-y-5">
+
+        {/* Email */}
+
+        <div>
+          <label className="text-sm font-semibold">
+            Enter Your Email
+          </label>
+
           <input
             type="text"
-            value={inputField.otp}
-            onChange={(event) => {
-              handleChange(event, "otp");
-            }}
-            className=" w-full p-2 rounded-lg border-2 border-slate-400  "
-            placeholder="Enter OTP"
+            value={inputField.email}
+            onChange={(event) => handleChange(event, "email")}
+            className="w-full mt-1 p-3 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter Email"
           />
         </div>
-      )}
 
-      {otpValidate && (
-        <div className="w-[60vh]  mb-5 ">
-          <div>Enter New Password</div>
-          <input
-            type="text"
-            value={inputField.newPassword}
-            onChange={(event) => {
-              handleChange(event, "newPassword");
-            }}
-            className=" w-full p-2 rounded-lg border-2 border-slate-400  "
-            placeholder="Enter New Password"
-          />
-        </div>
-      )}
+        {/* OTP */}
 
-      <div
-        className="bg-slate-900 text-white mx-40 w-fit  mt-10 p-3 rounded-lg text-center font-semibold cursor-pointer border-2 hover:bg-white hover:text-black"
-        onClick={() => handleSubmit()}
-      >
-        {contentVal}
+        {emailSubmit && (
+          <div>
+            <label className="text-sm font-semibold">
+              Enter OTP
+            </label>
+
+            <input
+              type="text"
+              value={inputField.otp}
+              onChange={(event) => handleChange(event, "otp")}
+              className="w-full mt-1 p-3 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter OTP"
+            />
+          </div>
+        )}
+
+        {/* New Password */}
+
+        {otpValidate && (
+          <div>
+            <label className="text-sm font-semibold">
+              Enter New Password
+            </label>
+
+            <input
+              type="password"
+              value={inputField.newPassword}
+              onChange={(event) => handleChange(event, "newPassword")}
+              className="w-full mt-1 p-3 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter New Password"
+            />
+          </div>
+        )}
+
+        {/* Button */}
+
+        <button
+          onClick={handleSubmit}
+          className="w-full bg-slate-900 text-white p-3 rounded-lg font-semibold hover:bg-black transition"
+        >
+          {contentVal}
+        </button>
+
       </div>
+
       {loader && <Loader />}
+
       <ToastContainer />
+
     </div>
   );
 };

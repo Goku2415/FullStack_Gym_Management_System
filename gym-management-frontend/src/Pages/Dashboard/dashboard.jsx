@@ -49,8 +49,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="w-3/4 text-black p-4 relative bg-[rgb(79,51,96)]">
-      <div className="w-full bg-linear-to-r from-sky-300  to-fuchsia-300 text-white rounded-lg flex  px-4 py-1   justify-between items-center">
+    <div className="w-full md:flex-1 text-black p-4 relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
+      <div className="w-full bg-gradient-to-r from-slate-800 to-slate-700 border border-slate-600 shadow-lg text-white rounded-lg flex px-4 py-2 justify-between items-center">
         <MenuIcon
           sx={{ cursor: "pointer" }}
           onClick={() => {
@@ -68,27 +68,27 @@ const Dashboard = () => {
       {accordianDashboard && (
         <div
           ref={ref}
-          className=" absolute p-2 bg-neutral-900 text-white rounded-xl text-lg font-extralight"
+          className=" absolute right-4 top-16 p-3 bg-slate-800 border border-slate-600 shadow-xl backdrop-blur-md text-white rounded-xl text-lg font-extralight"
         >
           <div>Hi Welcome to our Gym Management System.</div>
           <p>Feel free to ask any querries</p>
         </div>
       )}
 
-      <div className="mt-5 pt-3 mx-auto  bg-opacity-50 grid gap-5 grid-cols-3 w-full pb-5 overflow-x-auto h-[80%]">
+      <div className="mt-5 pt-3 mx-auto  bg-opacity-50 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full pb-5 overflow-x-auto h-[80%]">
         {/* this is the card block */}
         <Link
           to={"/member"}
-          className="w-full h-[200px] border-2  bg-[rgb(63,87,111)] rounded-lg  cursor-pointer shadow-lg"
+          className="w-full min-h-[180px] border bg-slate-800 border-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
         >
           <div className="py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl  ">
             <img
               src="./j.webp"
               alt="Joined img"
-              className="w-60 mx-auto h-40 pt-4"
+              className="w-40 sm:w-52 md:w-60 mx-auto h-32 sm:h-36 md:h-40 pt-4 object-contain"
             />
             {/* <PeopleAltIcon sx={{ color: "green", fontSize: "50px" }} /> */}
-            <p className="text-2xl text-white   font-mono">Joined Members</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 font-semibold tracking-wide">Joined Members</p>
           </div>
         </Link>
 
@@ -96,11 +96,11 @@ const Dashboard = () => {
         <Link
           to={`/specific/monthly-members`}
           onClick={() => handleOnClickMenu("Monthly_Joined")}
-          className="w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer "
+          className="w-full min-h-[180px] border bg-slate-800 border-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
         >
           <div className="py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl ">
             <img src="./g.webp" alt="" className="w-60 pt-4 mx-auto h-40" />
-            <p className="text-2xl text-white  font-mono"> Monthly Joined </p>
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 font-semibold tracking-wide"> Monthly Joined </p>
           </div>
         </Link>
 
@@ -108,7 +108,7 @@ const Dashboard = () => {
         <Link
           to={`/specific/Expiring_within_2_weeks`}
           onClick={() => handleOnClickMenu("Expiring_within_2_weeks")}
-          className="w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer"
+          className="w-full min-h-[180px] border bg-slate-800 border-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
         >
           <div className="py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl ">
             <img
@@ -116,7 +116,7 @@ const Dashboard = () => {
               alt="renew img"
               className="w-60 mx-auto h-40 pt-4"
             />
-            <p className="text-2xl  text-white font-mono">
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-200 font-semibold tracking-wide">
               Expiring within 2 weeks
             </p>
           </div>
@@ -126,7 +126,7 @@ const Dashboard = () => {
         <Link
           to={"/specific/within-4-7-expiring"}
           onClick={() => handleOnClickMenu("Expiry in 4-7 days")}
-          className="w-full h-[200px] border-2 bg-[rgb(63,87,111)] rounded-lg cursor-pointer "
+          className="w-full min-h-[180px] border bg-slate-800 border-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
         >
           <div className="py-1  flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl ">
             <img
@@ -134,7 +134,7 @@ const Dashboard = () => {
               alt="4-7 days img"
               className="w-60 mx-auto h-40 pt-4"
             />
-            <p className="text-2xl mx-auto w-fit text-white font-mono">
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 font-semibold tracking-wide">
               Expiring in 4-7 Days
             </p>
           </div>
@@ -144,7 +144,7 @@ const Dashboard = () => {
         <Link
           to={"/specific/expired-member"}
           onClick={() => handleOnClickMenu("Expired")}
-          className="w-full h-[200px] bg-[rgb(63,87,111)] border-2  rounded-lg cursor-pointer "
+          className="w-full min-h-[180px] border bg-slate-800 border-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
         >
           <div className="py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl ">
             <img
@@ -153,7 +153,7 @@ const Dashboard = () => {
               className="w-60 mx-auto h-40 pt-4 "
             />
 
-            <p className="text-2xl text-white font-mono">Expired</p>
+           <p className="text-lg sm:text-xl md:text-2xl text-slate-200 font-semibold tracking-wide">Expired</p>
           </div>
         </Link>
 
@@ -161,16 +161,16 @@ const Dashboard = () => {
         <Link
           to={"/specific/inactive-member"}
           onClick={() => handleOnClickMenu("Inactive_members")}
-          className="w-full h-50 border-2 bg-[rgb(63,87,111)]  rounded-lg cursor-pointer"
+          className="w-full min-h-[180px] border bg-slate-800 border-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
         >
           <div className="py-1 px-5 flex-col justify-center items-center w-full text-center rounded-b-lg hover:shadow-2xl">
             <img src="./m.webp" alt="" className="w-60 mx-auto h-40 pt-4" />
-            <p className="text-2xl text-white font-mono">Inactive Users</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 font-semibold tracking-wide">Inactive Users</p>
           </div>
         </Link>
       </div>
 
-      <div className="md:bottom-4 p-4 w-3/4 mb-4 md:mb-0 absolute bg-[rgb(22,27,38)] text-white mt-20 rounded-xl text-xl">
+      <div className="p-4 w-full md:w-[80%] lg:w-[60%] mx-auto bg-slate-800 border border-slate-600 shadow-lg text-white mt-10 rounded-xl text-sm sm:text-lg text-center">
         Contact Developer for any Technical Error at 8859420169
       </div>
     </div>

@@ -146,9 +146,9 @@ const Member = () => {
   };
 
   return (
-    <div className="text-black p-5 w-3/4 h-screen bg-linear-to-r from-[rgb(116,215,220)] to-[rgb(44,110,100)] flex-col ">
+    <div className="flex-1 p-6 bg-gradient-to-br from-slate-900 via-slate-800 text-stone-200 to-slate-900">
       {/* block for banner */}
-      <div className="border  bg-slate-900 flex justify-between w-full  text-white rounded-lg p-2">
+      <div className="border bg-slate-900 flex flex-col sm:flex-row gap-3 sm:justify-between w-full text-white rounded-lg p-3">
         <div
           className="border-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:bg-linear-to-r  from-sky-300  to-fuchsia-300 hover:text-black"
           onClick={() => handleMembers()}
@@ -168,7 +168,7 @@ const Member = () => {
         <ArrowBackIcon /> Back to Dashboard{" "}
       </Link>
 
-      <div className="mt-3 w-1/2 flex gap-2">
+      <div className="mt-3 w-full md:w-[60%] lg:w-[40%] flex gap-2">
         <input
           type="text"
           value={search}
@@ -188,8 +188,8 @@ const Member = () => {
         </div>
       </div>
 
-      <div className="mt-2 text-xl flex text-white  justify-between ">
-        <div>Total Members{isSearchModeOn ? totalData : null}</div>
+      <div className="mt-2 text-sm sm:text-lg md:text-xl flex flex-col sm:flex-row gap-2 text-white sm:justify-between">
+        <div>Total Members{isSearchModeOn ? totalData : totalData}</div>
         {!isSearchModeOn ? (
           <div className="flex gap-5">
             <div className="mb-3 text-white">
@@ -217,7 +217,7 @@ const Member = () => {
         ) : null}
       </div>
 
-      <div className=" p-3 bg-linear-to-r from-gray-400  bg-opacity-50 grid gap-5 grid-cols-3 rounded-lg  overflow-x-auto h-[72vh]">
+      <div className="p-3 bg-linear-to-r from-gray-400 bg-opacity-50 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 rounded-lg overflow-x-auto h-[72vh]">
         {data.map((item, index) => {
           return <MemberCard key={index} item={item} />;
         })}

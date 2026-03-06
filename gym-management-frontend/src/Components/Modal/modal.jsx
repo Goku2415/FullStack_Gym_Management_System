@@ -3,16 +3,35 @@ import ClearIcon from "@mui/icons-material/Clear";
 
 const Modal = ({ handleClose, content, header }) => {
   return (
-    <div className="w-screen h-screen fixed bg-slate-900  text-black top-0 left-0 flex justify-center ">
-      <div className="w-[80vh] bg-white rounded-lg h-fit mt-40  p-5">
-        <div className="flex justify-between ">
-          <div className="font-semibold text-4xl  ">{header}</div>
-          <div className="cursor-pointer " onClick={() => handleClose()}>
-            <ClearIcon sx={{ fontSize: "32px" }} />
-          </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50 px-4">
+
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-2xl p-6 animate-fadeIn">
+
+        {/* Header */}
+
+        <div className="flex items-center justify-between border-b pb-3">
+
+          <h2 className="text-2xl font-semibold">
+            {header}
+          </h2>
+
+          <button
+            onClick={handleClose}
+            className="hover:bg-gray-200 p-2 rounded-full transition"
+          >
+            <ClearIcon />
+          </button>
+
         </div>
-        <div className="mt-10 ">{content}</div>
+
+        {/* Content */}
+
+        <div className="mt-6">
+          {content}
+        </div>
+
       </div>
+
     </div>
   );
 };

@@ -67,21 +67,7 @@ const MemberDetail = () => {
     }
   };
 
-  // const handleSwitchBtn = async () => {
-  //   const newStatus = status === "Active" ? "Pending" : "Active";
-  //   try {
-  //     const res = await axios.post(
-  //       `http://localhost:4000/members/change-status/${id}`,
-  //       { status: newStatus },
-  //       { withCredentials: true },
-  //     );
-
-  //     setStatus(newStatus);
-  //     toast.success("status updated successfully");
-  //   } catch (err) {
-  //     toast.error("Failed to update status");
-  //   }
-  // };
+  
 
   const isDateInPast = (inputDate) => {
     if (!inputDate) return false;
@@ -125,14 +111,14 @@ const MemberDetail = () => {
 };
 
   return (
-    <div className="w-3/4   p-2">
+    <div className="w-full md:flex-1 p-3 md:p-4">
       <div className="p-4 rounded-lg w-full text-xl text-white bg-slate-500 border-2  shadow-2xl">
         {/* This navigate function is used to track the history of the users last page and using -1 navigates users to previous page wherever it may be */}
         <span
           onClick={() => {
             navigate(-1);
           }}
-          className="border-2 rounded-2xl text-white hover:bg-[#1e3d7b] mx-auto my-auto cursor-pointer p-2"
+          className="border rounded-xl text-white hover:bg-[#1e3d7b] cursor-pointer px-3 py-2 text-sm sm:text-base"
         >
           {" "}
           <ArrowBackIcon sx={{ cursor: "pointer", marginBottom: "2px" }} />
@@ -140,42 +126,42 @@ const MemberDetail = () => {
         </span>
       </div>
 
-      <div className="mt-4 bg-white p-4 h-[80%] rounded-lg shadow-2xl">
+      <div className="mt-4 bg-white p-4 md:p-6 min-h-[70vh] rounded-lg shadow-2xl">
         <div className="w-full flex flex-col md:flex-row gap-8 ">
           <div className="w-full md:w-1/3 flex justify-center">
             <img
               src={data?.profilePic}
               alt="Profile"
-              className="w-64 h-64 object-cover rounded-2xl shadow-lg"
+              className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 object-cover rounded-2xl shadow-lg"
             />
           </div>
 
           <div className="w-full md:w-2/3 text-lg space-y-3">
-            <div className="mt-1 mb-2 text-xl font-semibold">
+           <div className="mt-1 mb-2 text-base sm:text-lg md:text-xl font-semibold">
               Name :{data?.name}
             </div>
-            <div className="mt-1 mb-2 text-xl font-semibold">
+            <div className="mt-1 mb-2 text-base sm:text-lg md:text-xl font-semibold">
               Mob : {data?.mobile}
             </div>
-            <div className="mt-1 mb-2 text-xl font-semibold">
+            <div className="mt-1 mb-2 text-base sm:text-lg md:text-xl font-semibold">
               Location : {data?.location}
             </div>
 
-            <div className="mt-1 mb-2 text-xl font-semibold">
+            <div className="mt-1 mb-2 text-base sm:text-lg md:text-xl font-semibold">
               Joined Date :{" "}
               {data?.createdAt
                 ? data.createdAt.slice(0, 10).split("-").reverse().join("-")
                 : "N/A"}
             </div>
 
-            <div className="mt-1 mb-2 text-xl font-semibold">
+            <div className="mt-1 mb-2 text-base sm:text-lg md:text-xl font-semibold">
               Next Bill Date :
               {data?.nextBillDate
                 ? data.nextBillDate.slice(0, 10).split("-").reverse().join("-")
                 : "N/A"}
             </div>
 
-            <div className="mt-1 mb-2 text-xl font-semibold">
+            <div className="mt-1 mb-2 text-base sm:text-lg md:text-xl font-semibold">
               Status :
               <Switch onColor="#6366F1" checked={status} disabled={true} />
             </div>
@@ -189,7 +175,7 @@ const MemberDetail = () => {
             ) : null}
 
             {renew &&  (
-              <div className="mt-6 p-4 bg-gray-100 rounded-xl shadow-md w-full md:w-2/3">
+             <div className="mt-6 p-4 bg-gray-100 rounded-xl shadow-md w-full lg:w-2/3">
                 <div className="mb-2 font-semibold">Select Membership</div>
 
                 <select

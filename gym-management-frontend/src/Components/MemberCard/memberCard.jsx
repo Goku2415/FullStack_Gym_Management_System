@@ -32,7 +32,7 @@ const MemberCard = ({ item }) => {
   return (
     <Link
       to={`/member/${item?._id || "unknown"}`}
-      className="bg-white w-84 h-60 ml-1 rounded-lg p-3 hover:bg-neutral-200 hover:shadow-2xl cursor-pointer"
+     className="bg-white w-full max-w-[320px] min-h-[220px] mx-auto rounded-lg p-4 hover:bg-neutral-200 hover:shadow-2xl text-black cursor-pointer transition"
     >
       <div className="w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full">
         <img
