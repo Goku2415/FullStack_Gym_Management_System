@@ -1,13 +1,11 @@
-import express from "express";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import dotenv from "dotenv";
-import connectDB from "./DBConn/conn.js";
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+require("dotenv").config();
 
-// ✅ Load env FIRST
-dotenv.config();
+const connectDB = require("./DBConn/conn");
 
-// ✅ Connect DB
+// Connect DB
 connectDB();
 
 const app = express();
@@ -17,16 +15,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// ✅ CORS
+// CORS
 app.use(cors({
-  origin: "https://full-stack-gym-management-system-ih.vercel.app",
+   origin: [
+    "http://localhost:5173",
+    "https://full-stack-gym-management-system-ih.vercel.app"
+  ],
   credentials: true
 }));
 
-// ✅ Routes
-import GymRoutes from "./Routes/gym.js";
-import membershipRoutes from "./Routes/membership.js";
-import memberRoutes from "./Routes/member.js";
+// Routes
+const GymRoutes = require("./Routes/gym");
+const membershipRoutes = require("./Routes/membership");
+const memberRoutes = require("./Routes/member");
 
 app.use("/auth", GymRoutes);
 app.use("/plans", membershipRoutes);
@@ -37,7 +38,7 @@ app.get("/", (req, res) => {
   res.send("Backend running on Render 🚀");
 });
 
-// ✅ VERY IMPORTANT FOR RENDER
+// Start server
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {

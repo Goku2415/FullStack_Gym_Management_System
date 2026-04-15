@@ -1,7 +1,5 @@
 const Membership = require('../Modals/membership');
 
-
-
 exports.addMembership = async (req, res) => {
     try{
         const {months, price} = req.body;
