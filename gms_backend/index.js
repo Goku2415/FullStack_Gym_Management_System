@@ -13,7 +13,7 @@ app.use(cookieParser());
 require("./DBConn/conn");
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://https://full-stack-gym-management-system-ih.vercel.app/',
     credentials: true
 }))// I have enables cors to share data between frontend and backend which are running on different ports and i have manually told that allow the data sharing between port 3000 form frontend. 
 
