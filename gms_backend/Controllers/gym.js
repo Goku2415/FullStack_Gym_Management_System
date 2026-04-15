@@ -42,7 +42,6 @@ exports.login = async (req, res) => {
 
     try {
         const { userName, password } = req.body;
-        console.log("Incoming Body:", req.body);
         const gym = await Gym.findOne({ userName });
         console.log("Found Gym:", gym);
 
@@ -55,13 +54,18 @@ exports.login = async (req, res) => {
 
             res.cookie("cookieToken", token, cookieOptions);
 
-            res.json({ message: "logged in successfully", success: true, gym, token });
+            res.json({ 
+                message: "logged in successfully", 
+                success: true, 
+                gym, 
+                token 
+            });
 
         } else {
             console.log("Password mismatch or user not found");
-            return res.status(400).json({ error: "invalid credentials" });
+            res.status(400).json({ error: "invalid credentials" });
         }
-
+        console.log(res.data.gym);
 
     } catch (err) {
         console.log("Login Error:", err);
