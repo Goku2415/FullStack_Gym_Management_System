@@ -15,7 +15,7 @@ const Login = () => {
         loginField,
         { withCredentials: true },
       );
-      console.log(res.data);
+      console.log(res.data.gym);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userName", res.data.gym.userName);
