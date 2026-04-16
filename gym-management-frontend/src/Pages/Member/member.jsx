@@ -45,7 +45,7 @@ const Member = () => {
   const fetchData = async (skip, limits) => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/members/all-member?skip=${skip}&limit=${limits}`,
+        `${import.meta.env.VITE_API_URL}/members/all-member?skip=${skip}&limit=${limits}`,
         { withCredentials: true },
       );
 
@@ -89,7 +89,7 @@ const Member = () => {
       setIsSearchModeOn(true);
       try {
         const res = await axios.get(
-          `http://localhost:4000/members/searched-members?searchTerm=${search}`,
+          `${import.meta.env.VITE_API_URL}/members/searched-members?searchTerm=${search}`,
           { withCredentials: true },
         );
         if (!res?.data?.data) {

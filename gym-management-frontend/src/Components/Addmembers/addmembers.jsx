@@ -25,7 +25,7 @@ const Addmembers = () => {
   const handleRegisterButton = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/members/register-member",
+        `${import.meta.env.VITE_API_URL}/members/register-member`,
         inputField,
         { withCredentials: true }
       );
@@ -80,7 +80,7 @@ const Addmembers = () => {
   const fetchMemberships = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4000/plans/get-memberships",
+        `${import.meta.env.VITE_API_URL}/plans/get-memberships`,
         { withCredentials: true }
       );
 

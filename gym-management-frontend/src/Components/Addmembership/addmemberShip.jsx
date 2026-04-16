@@ -9,7 +9,7 @@ const AddmemberShip = ({ handleClose }) => {
   const fetchMemberships = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4000/plans/get-memberships",
+        `${import.meta.env.VITE_API_URL}/plans/get-memberships`,
         { withCredentials: true }
       );
 
@@ -31,7 +31,7 @@ const AddmemberShip = ({ handleClose }) => {
   const handleAddmembership = async () => {
     axios
       .post(
-        "http://localhost:4000/plans/add-membership",
+        `${import.meta.env.VITE_API_URL}/plans/add-membership`,
         inputField,
         { withCredentials: true }
       )

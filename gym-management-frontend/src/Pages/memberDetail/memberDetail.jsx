@@ -25,7 +25,7 @@ const MemberDetail = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/members/get-member/${id}`,
+        `${import.meta.env.VITE_API_URL}/members/get-member/${id}`,
         { withCredentials: true },
       );
       setData(res.data.member);
@@ -55,7 +55,7 @@ const MemberDetail = () => {
   const fetchMembership = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/plans/get-memberships`,
+        `${import.meta.env.VITE_API_URL}/plans/get-memberships`,
         { withCredentials: true },
       );
       // console.log(res.data);
@@ -86,7 +86,7 @@ const MemberDetail = () => {
   const handleRenewSaveBtn = async () => {
   try {
     let res = await axios.put(
-      `http://localhost:4000/members/update-member-plan/${id}`,
+      `${import.meta.env.VITE_API_URL}/members/update-member-plan/${id}`,
       { membership: planMember },
       { withCredentials: true }
     );

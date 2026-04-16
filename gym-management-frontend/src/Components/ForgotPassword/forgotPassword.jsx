@@ -30,7 +30,7 @@ const ForgotPassword = () => {
       setLoader(true);
 
       const res = await axios.post(
-        "http://localhost:4000/auth/reset-password/checkotp",
+        `${import.meta.env.VITE_API_URL}/auth/reset-password/checkotp`,
         {
           email: inputField.email,
           otp: inputField.otp,
@@ -58,7 +58,7 @@ const ForgotPassword = () => {
       setLoader(true);
 
       const res = await axios.post(
-        "http://localhost:4000/auth/reset-password/sendOtp",
+        `${import.meta.env.VITE_API_URL}/auth/reset-password/sendOtp`,
         { email: inputField.email }
       );
 
@@ -81,7 +81,7 @@ const ForgotPassword = () => {
       setLoader(true);
 
       const res = await axios.post(
-        "http://localhost:4000/auth/reset-password",
+        `${import.meta.env.VITE_API_URL}/auth/reset-password`,
         {
           email: inputField.email,
           newPassword: inputField.newPassword,
