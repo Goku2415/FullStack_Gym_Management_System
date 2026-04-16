@@ -43,7 +43,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
+        "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
         data
       );
 
@@ -61,7 +61,7 @@ const SignUp = () => {
   const handleRegister = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/auth/register",
+        `${import.meta.env.VITE_API_URL}/auth/register`,
         inputField
       );
 

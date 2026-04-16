@@ -63,7 +63,7 @@ const Addmembers = () => {
 
     try {
       const response = await axios.post(
-        "http://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
+        "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
         data
       );
 
