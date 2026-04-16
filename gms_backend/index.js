@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(cors({
    origin: [
     "http://localhost:5173",
-    "https://full-stack-gym-management-system-ih.vercel.app"
+    "https://gms-frontend-opal.vercel.app"
   ],
   credentials: true
 }));

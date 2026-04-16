@@ -11,12 +11,13 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-         "https://gym-backend-qrp7.onrender.com",
+        `${import.meta.env.VITE_API_URL}/auth/login`, // ✅ FIXED
         loginField,
         { withCredentials: true },
       );
-      console.log(res.data.gym);
-
+      if (!res.data || !res.data.gym) {
+        throw new Error("Invalid response from server");
+      }
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userName", res.data.gym.userName);
       localStorage.setItem("gymName", res.data.gym.gymName);
@@ -24,7 +25,6 @@ const Login = () => {
       localStorage.setItem("isLogin", "true");
 
       navigate("/dashboard");
-      window.location.reload();
     } catch (err) {
       const errorMessage = err.response?.data?.error || err.message;
 
@@ -39,15 +39,13 @@ const Login = () => {
 
   return (
     <form
-  onSubmit={(e) => {
-    e.preventDefault();
-    handleLogin();
-  }}
- className="bg-white/30 backdrop-blur-md border border-white/20 p-8 rounded-xl shadow-xl w-[320px] transition duration-300 hover:scale-105"
->
-      <div className="font-sans text-black text-center text-3xl  ">
-        Login
-      </div>
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleLogin();
+      }}
+      className="bg-white/30 backdrop-blur-md border border-white/20 p-8 rounded-xl shadow-xl w-[320px] transition duration-300 hover:scale-105"
+    >
+      <div className="font-sans text-black text-center text-3xl  ">Login</div>
 
       <input
         name="userName"
