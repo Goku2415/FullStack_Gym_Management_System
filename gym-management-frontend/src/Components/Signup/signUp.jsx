@@ -9,7 +9,6 @@ import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 
 const SignUp = () => {
-
   const [forgotPassword, setForgotPassword] = useState(false);
 
   const [inputField, setInputField] = useState({
@@ -44,7 +43,7 @@ const SignUp = () => {
     try {
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
-        data
+        data,
       );
 
       const imageUrl = response.data.secure_url;
@@ -62,7 +61,7 @@ const SignUp = () => {
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/register`,
-        inputField
+        inputField,
       );
 
       toast.success(res.data.message);
@@ -79,11 +78,9 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-
       <ToastContainer />
 
       <div className="w-full max-w-lg bg-white shadow-xl rounded-xl p-8">
-
         <h2 className="text-3xl font-bold text-center mb-8">
           Register Your Gym
         </h2>
@@ -98,12 +95,20 @@ const SignUp = () => {
         />
 
         <input
-          name="username"
+          name="userName"
           value={inputField.userName}
           onChange={(event) => handleOnChange(event, "userName")}
           type="text"
           placeholder="Enter Username"
           className="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          name="gymName"
+          value={inputField.gymName}
+          onChange={(event) => handleOnChange(event, "gymName")}
+          type="text"
+          placeholder="Enter Gym Name"
+          className="w-full p-3 border rounded-lg mb-4"
         />
 
         <input
@@ -128,7 +133,6 @@ const SignUp = () => {
         )}
 
         <div className="flex items-center gap-6 mt-6">
-
           <img
             src={inputField.profilePic}
             className="h-32 w-24 object-cover rounded-lg border"
@@ -136,7 +140,6 @@ const SignUp = () => {
           />
 
           <div className="flex flex-col w-full gap-4">
-
             <button
               onClick={handleRegister}
               className="w-full bg-black text-white p-3 rounded-lg hover:bg-gray-800 transition font-semibold"
@@ -150,11 +153,8 @@ const SignUp = () => {
             >
               Forgot Password
             </button>
-
           </div>
-
         </div>
-
       </div>
 
       {forgotPassword && (
@@ -164,7 +164,6 @@ const SignUp = () => {
           content={<ForgotPassword />}
         />
       )}
-
     </div>
   );
 };
