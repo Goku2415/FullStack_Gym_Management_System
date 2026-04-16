@@ -7,35 +7,49 @@ const jwt = require('jsonwebtoken');
 
 
 exports.register = async (req, res) => {
+  try {
+    const { userName, password, gymName, profilePic, email } = req.body;
 
-    try {
-        const { userName, password, gymName, profilePic, email } = req.body;
-        const isExist = await Gym.findOne({ userName });
-
-        if (isExist) {//if user already exist.
-            return res.status(400).json({
-                error: "Username Already Exist, Please try with other username"
-            })
-        } else {
-
-            const hashedPassword = await bcrypt.hash(password, 10);
-
-            const newGym = new Gym({ userName, password: hashedPassword, gymName, profilePic, email });
-            await newGym.save();
-
-            return res.status(201).json({ message: "User registered successfully", success: "yes", data: newGym });
-        }
-    } catch (err) {
-        res.status(500).json({ error: "error msg" })
+    if (!userName || !password || !gymName || !email) {
+      return res.status(400).json({ error: "All fields are required" });
     }
 
+    const isExist = await Gym.findOne({ userName });
 
-}
+    if (isExist) {
+      return res.status(400).json({
+        error: "Username Already Exist, Please try with other username"
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newGym = new Gym({
+      userName,
+      password: hashedPassword,
+      gymName,
+      profilePic,
+      email
+    });
+
+    await newGym.save();
+
+    return res.status(201).json({
+      message: "User registered successfully",
+      success: "yes",
+      data: newGym
+    });
+
+  } catch (err) {
+    console.log("REGISTER ERROR:", err); // 🔥 ADD THIS
+    return res.status(500).json({ error: err.message }); // 🔥 SHOW REAL ERROR
+  }
+};
 
 const cookieOptions = {
     httpOnly: true,
-    secure: false,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
 }
 
 exports.login = async (req, res) => {
