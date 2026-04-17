@@ -51,7 +51,7 @@ const MemberDetail = () => {
   const fetchMembership = async () => {
     try {
       const res = await api.get(`/plans/get-memberships`);
-      
+
       // console.log(res.data);
       setMembership(res.data.membership);
       setPlanMember(res.data.membership[0]._id);
@@ -80,10 +80,9 @@ const MemberDetail = () => {
   const handleRenewSaveBtn = async () => {
   try {
     let res = await api.put(
-      `${import.meta.env.VITE_API_URL}/members/update-member-plan/${id}`,
-      { membership: planMember },
-      
-    );
+  `/members/update-member-plan/${id}`,
+  { membership: planMember }
+);
 
     const updatedMember = res.data.member;
     setData(updatedMember);

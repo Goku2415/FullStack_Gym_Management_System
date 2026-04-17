@@ -8,11 +8,8 @@ import api from "../../api/api";const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await api.post(
-        `${import.meta.env.VITE_API_URL}/auth/login`, // ✅ FIXED
-        loginField,
-        
-      );
+      const res = await api.post("/auth/login", loginField);
+      
       if (!res.data || !res.data.gym) {
         throw new Error("Invalid response from server");
       }

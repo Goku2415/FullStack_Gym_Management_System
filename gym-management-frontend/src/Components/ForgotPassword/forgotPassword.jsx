@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Loader from "../Loader/loader";
-import api from "../../api/api";const ForgotPassword = () => {
+import api from "../../api/api";
+const ForgotPassword = () => {
   const [emailSubmit, setEmailSubmit] = useState(false);
   const [otpValidate, setOtpValidate] = useState(false);
   const [loader, setLoader] = useState(false);
@@ -27,13 +28,10 @@ import api from "../../api/api";const ForgotPassword = () => {
     try {
       setLoader(true);
 
-      const res = await api.post(
-        `${import.meta.env.VITE_API_URL}/auth/reset-password/checkotp`,
-        {
-          email: inputField.email,
-          otp: inputField.otp,
-        }
-      );
+      const res = await api.post("/auth/reset-password/checkotp", {
+        email: inputField.email,
+        otp: inputField.otp,
+      });
 
       setOtpValidate(true);
       setContentValue("Change Password");
@@ -55,10 +53,9 @@ import api from "../../api/api";const ForgotPassword = () => {
     try {
       setLoader(true);
 
-      const res = await api.post(
-        `${import.meta.env.VITE_API_URL}/auth/reset-password/sendOtp`,
-        { email: inputField.email }
-      );
+      const res = await api.post("/auth/reset-password/sendOtp", {
+        email: inputField.email,
+      });
 
       setEmailSubmit(true);
       setContentValue("Verify OTP");
@@ -66,8 +63,7 @@ import api from "../../api/api";const ForgotPassword = () => {
       toast.success(res.data.message);
       setLoader(false);
     } catch (err) {
-      const errorMessage =
-        err.response?.data?.error || "Something went wrong";
+      const errorMessage = err.response?.data?.error || "Something went wrong";
 
       toast.error(errorMessage);
       setLoader(false);
@@ -78,13 +74,10 @@ import api from "../../api/api";const ForgotPassword = () => {
     try {
       setLoader(true);
 
-      const res = await api.post(
-        `${import.meta.env.VITE_API_URL}/auth/reset-password`,
-        {
-          email: inputField.email,
-          newPassword: inputField.newPassword,
-        }
-      );
+      const res = await api.post("/auth/reset-password", {
+        email: inputField.email,
+        newPassword: inputField.newPassword,
+      });
 
       toast.success(res.data.message);
       setLoader(false);
@@ -103,15 +96,11 @@ import api from "../../api/api";const ForgotPassword = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-
       <div className="space-y-5">
-
         {/* Email */}
 
         <div>
-          <label className="text-sm font-semibold">
-            Enter Your Email
-          </label>
+          <label className="text-sm font-semibold">Enter Your Email</label>
 
           <input
             type="text"
@@ -126,9 +115,7 @@ import api from "../../api/api";const ForgotPassword = () => {
 
         {emailSubmit && (
           <div>
-            <label className="text-sm font-semibold">
-              Enter OTP
-            </label>
+            <label className="text-sm font-semibold">Enter OTP</label>
 
             <input
               type="text"
@@ -144,9 +131,7 @@ import api from "../../api/api";const ForgotPassword = () => {
 
         {otpValidate && (
           <div>
-            <label className="text-sm font-semibold">
-              Enter New Password
-            </label>
+            <label className="text-sm font-semibold">Enter New Password</label>
 
             <input
               type="password"
@@ -166,13 +151,11 @@ import api from "../../api/api";const ForgotPassword = () => {
         >
           {contentVal}
         </button>
-
       </div>
 
       {loader && <Loader />}
 
       <ToastContainer />
-
     </div>
   );
 };

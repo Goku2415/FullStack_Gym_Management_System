@@ -24,11 +24,7 @@ const Addmembers = () => {
 
   const handleRegisterButton = async () => {
     try {
-      const res = await api.post(
-        `${import.meta.env.VITE_API_URL}/member/register-member`,
-        inputField,
-        
-      );
+      const res = await api.post("/member/register-member", inputField);
 
       setInputField({
         name: "",

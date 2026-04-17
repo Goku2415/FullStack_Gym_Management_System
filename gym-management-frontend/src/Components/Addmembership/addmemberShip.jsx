@@ -8,9 +8,16 @@ const AddmemberShip = ({ handleClose }) => {
 
   const fetchMemberships = async () => {
     try {
-     const res = await api.get('/plans/get-memberships');
+      const res = await api.get("/plans/get-memberships", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
-      setMembership(res.data.membership || []);
+      const memberships = Array.isArray(res.data.membership)
+        ? res.data.membership
+        : [];
+      setMembership(memberships);
 
       toast.success(
         res.data.membership.length + " Memberships fetched successfully",
@@ -26,20 +33,17 @@ const AddmemberShip = ({ handleClose }) => {
   }, []);
 
   const handleAddmembership = async () => {
-  try {
-    const res = await api.post(
-      '/plans/add-membership',
-      inputField
-    );
+    try {
+      const res = await api.post("/plans/add-membership", inputField);
 
-    toast.success(res.data.message);
-    fetchMemberships(); // refresh UI
-    handleClose();
-  } catch (err) {
-    console.error(err);
-    toast.error("Failed to add membership");
-  }
-};
+      toast.success(res.data.message);
+      fetchMemberships(); // refresh UI
+      handleClose();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to add membership");
+    }
+  };
 
   const handleOnChange = (event, name) => {
     setInputField({ ...inputField, [name]: event.target.value });
