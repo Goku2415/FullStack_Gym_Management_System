@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Loader from "../Loader/loader";
-import axios from "axios";
-
+import api from "../api/api";
 const ForgotPassword = () => {
   const [emailSubmit, setEmailSubmit] = useState(false);
   const [otpValidate, setOtpValidate] = useState(false);
@@ -29,7 +28,7 @@ const ForgotPassword = () => {
     try {
       setLoader(true);
 
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/auth/reset-password/checkotp`,
         {
           email: inputField.email,
@@ -57,7 +56,7 @@ const ForgotPassword = () => {
     try {
       setLoader(true);
 
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/auth/reset-password/sendOtp`,
         { email: inputField.email }
       );
@@ -80,7 +79,7 @@ const ForgotPassword = () => {
     try {
       setLoader(true);
 
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/auth/reset-password`,
         {
           email: inputField.email,

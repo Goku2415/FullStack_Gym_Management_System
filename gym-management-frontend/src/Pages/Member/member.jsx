@@ -11,7 +11,7 @@ import MemberCard from "../../Components/MemberCard/memberCard.jsx";
 import AddmemberShip from "../../Components/Addmembership/addmemberShip.jsx";
 import Addmembers from "../../Components/Addmembers/addmembers.jsx";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
+import api from "../api/api";
 
 const Member = () => {
   const [addMembership, setAddmemberShip] = useState(false);
@@ -44,9 +44,9 @@ const Member = () => {
 
   const fetchData = async (skip, limits) => {
     try {
-      const res = await axios.get(
+      const res = await api.get(
         `${import.meta.env.VITE_API_URL}/members/all-member?skip=${skip}&limit=${limits}`,
-        { withCredentials: true },
+        
       );
 
       if (!res?.data?.members) {
@@ -88,9 +88,9 @@ const Member = () => {
     if (search !== "") {
       setIsSearchModeOn(true);
       try {
-        const res = await axios.get(
+        const res = await api.get(
           `${import.meta.env.VITE_API_URL}/members/searched-members?searchTerm=${search}`,
-          { withCredentials: true },
+          
         );
         if (!res?.data?.data) {
           setData([]);

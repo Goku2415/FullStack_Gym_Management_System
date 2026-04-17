@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api/api";
 import { toast, ToastContainer } from "react-toastify";
 
 const AddmemberShip = ({ handleClose }) => {
@@ -8,13 +8,8 @@ const AddmemberShip = ({ handleClose }) => {
 
   const fetchMemberships = async () => {
     try {
-      const res = await axios.get(
+      const res = await api.get(
         `${import.meta.env.VITE_API_URL}/api/membership/get-memberships`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        },
       );
 
       setMembership(res.data.membership || []);
@@ -33,15 +28,10 @@ const AddmemberShip = ({ handleClose }) => {
   }, []);
 
   const handleAddmembership = async () => {
-    axios
+    api
       .post(
         `${import.meta.env.VITE_API_URL}/api/membership/add-membership`,
         inputField,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        },
       )
       .then((res) => {
         toast.success(res.data.message);

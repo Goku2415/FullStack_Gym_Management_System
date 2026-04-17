@@ -4,7 +4,7 @@ import Modal from "../Modal/modal";
 import ForgotPassword from "../ForgotPassword/forgotPassword";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/api";
 import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 
@@ -41,7 +41,7 @@ const SignUp = () => {
     data.append("upload_preset", "gym-management");
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
         data,
       );
@@ -59,7 +59,7 @@ const SignUp = () => {
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/auth/register`,
         inputField,
       );

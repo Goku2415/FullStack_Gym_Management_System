@@ -1,8 +1,7 @@
-import axios from "axios";
-
+import api from "../api/api";
 const getMonthlyJoined = async () => {
     try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/members/monthly-members`, {withCredentials:true});
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/members/monthly-members`, {withCredentials:true});
         return res.data.members || [];
     } catch (err) {
         console.log("Error fetching data",err);
@@ -13,7 +12,7 @@ const getMonthlyJoined = async () => {
 
 const threeDayExpire = async () => {
     try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/members/Expiring_within_2_weeks`, {withCredentials:true});
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/members/Expiring_within_2_weeks`, {withCredentials:true});
         return res.data.members || [];
     } catch (err) {
         console.log("Error fetching data",err);
@@ -24,7 +23,7 @@ const threeDayExpire = async () => {
 
 const fourToSevenDaysExpire = async () => {
     try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/members/within-4-7-expiring`, {withCredentials:true});
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/members/within-4-7-expiring`, {withCredentials:true});
 
         return res.data.members || [];
     } catch (err) {
@@ -34,7 +33,7 @@ const fourToSevenDaysExpire = async () => {
 };
 const expired = async () => {
     try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/members/expired-member`, {withCredentials:true});
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/members/expired-member`, {withCredentials:true});
         return res.data.members || [];
     } catch (err) {
         console.log("Error fetching data",err);
@@ -45,7 +44,7 @@ const expired = async () => {
 
 const inActiveMembers = async () => {
     try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/members/inactive-member`, {withCredentials:true});
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/members/inactive-member`, {withCredentials:true});
         return res.data.members || [];
     } catch (err) {
         console.log("Error fetching data",err);

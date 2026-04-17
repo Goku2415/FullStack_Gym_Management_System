@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate, useParams } from "react-router-dom";
 import Switch from "react-switch";
-import axios from "axios";
+import api from "../api/api";
 import { toast, ToastContainer } from "react-toastify";
 
 const MemberDetail = () => {
@@ -24,9 +24,9 @@ const MemberDetail = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(
+      const res = await api.get(
         `${import.meta.env.VITE_API_URL}/members/get-member/${id}`,
-        { withCredentials: true },
+        
       );
       setData(res.data.member);
 
@@ -54,9 +54,9 @@ const MemberDetail = () => {
 
   const fetchMembership = async () => {
     try {
-      const res = await axios.get(
+      const res = await api.get(
         `${import.meta.env.VITE_API_URL}/plans/get-memberships`,
-        { withCredentials: true },
+        
       );
       // console.log(res.data);
       setMembership(res.data.membership);
@@ -85,10 +85,10 @@ const MemberDetail = () => {
 
   const handleRenewSaveBtn = async () => {
   try {
-    let res = await axios.put(
+    let res = await api.put(
       `${import.meta.env.VITE_API_URL}/members/update-member-plan/${id}`,
       { membership: planMember },
-      { withCredentials: true }
+      
     );
 
     const updatedMember = res.data.member;

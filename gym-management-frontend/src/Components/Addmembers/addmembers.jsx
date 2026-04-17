@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
+import api from "../api/api";
 import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 
@@ -24,10 +24,10 @@ const Addmembers = () => {
 
   const handleRegisterButton = async () => {
     try {
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/member/register-member`,
         inputField,
-        { withCredentials: true }
+        
       );
 
       setInputField({
@@ -62,7 +62,7 @@ const Addmembers = () => {
     data.append("upload_preset", "gym-management");
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
         data
       );
@@ -79,9 +79,9 @@ const Addmembers = () => {
 
   const fetchMemberships = async () => {
     try {
-      const res = await axios.get(
+      const res = await api.get(
         `${import.meta.env.VITE_API_URL}/membership/get-memberships`,
-        { withCredentials: true }
+        
       );
 
       const memberships = res.data.membership || [];

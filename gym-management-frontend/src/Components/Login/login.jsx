@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
-
+import api from "../api/api";
 const Login = () => {
   const [loginField, setLoginField] = useState({ userName: "", password: "" });
 
@@ -10,10 +9,10 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/auth/login`, // ✅ FIXED
         loginField,
-        { withCredentials: true },
+        
       );
       if (!res.data || !res.data.gym) {
         throw new Error("Invalid response from server");
