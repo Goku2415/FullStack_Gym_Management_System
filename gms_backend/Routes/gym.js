@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const Gymcontroller = require("../Controllers/gym");
 const auth = require("../Auth/auth");
 
