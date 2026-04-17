@@ -23,10 +23,7 @@ const MemberDetail = () => {
 
   const fetchData = async () => {
     try {
-      const res = await api.get(
-        `${import.meta.env.VITE_API_URL}/members/get-member/${id}`,
-        
-      );
+      const res = await api.get(`/members/get-member/${id}`);
       setData(res.data.member);
 
       const member = res.data.member;
@@ -53,10 +50,8 @@ const MemberDetail = () => {
 
   const fetchMembership = async () => {
     try {
-      const res = await api.get(
-        `${import.meta.env.VITE_API_URL}/plans/get-memberships`,
-        
-      );
+      const res = await api.get(`/plans/get-memberships`);
+      
       // console.log(res.data);
       setMembership(res.data.membership);
       setPlanMember(res.data.membership[0]._id);

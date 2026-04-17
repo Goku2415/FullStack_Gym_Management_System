@@ -79,10 +79,7 @@ const Addmembers = () => {
 
   const fetchMemberships = async () => {
     try {
-      const res = await api.get(
-        `${import.meta.env.VITE_API_URL}/membership/get-memberships`,
-        
-      );
+      const res = await api.get('/plans/get-memberships');
 
       const memberships = res.data.membership || [];
       setMembershipList(memberships);

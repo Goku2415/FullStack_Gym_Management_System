@@ -8,9 +8,7 @@ const AddmemberShip = ({ handleClose }) => {
 
   const fetchMemberships = async () => {
     try {
-      const res = await api.get(
-        `${import.meta.env.VITE_API_URL}/api/membership/get-memberships`,
-      );
+     const res = await api.get('/plans/get-memberships');
 
       setMembership(res.data.membership || []);
 
@@ -28,21 +26,20 @@ const AddmemberShip = ({ handleClose }) => {
   }, []);
 
   const handleAddmembership = async () => {
-    api
-      .post(
-        `${import.meta.env.VITE_API_URL}/api/membership/add-membership`,
-        inputField,
-      )
-      .then((res) => {
-        toast.success(res.data.message);
-        fetchMemberships();
-        handleClose();
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Failed to add membership");
-      });
-  };
+  try {
+    const res = await api.post(
+      '/plans/add-membership',
+      inputField
+    );
+
+    toast.success(res.data.message);
+    fetchMemberships(); // refresh UI
+    handleClose();
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to add membership");
+  }
+};
 
   const handleOnChange = (event, name) => {
     setInputField({ ...inputField, [name]: event.target.value });

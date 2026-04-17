@@ -44,8 +44,7 @@ const Member = () => {
   const fetchData = async (skip, limits) => {
     try {
       const res = await api.get(
-        `${import.meta.env.VITE_API_URL}/members/all-member?skip=${skip}&limit=${limits}`,
-        
+        `/members/all-member?skip=${skip}&limit=${limits}`,
       );
 
       if (!res?.data?.members) {
@@ -87,10 +86,8 @@ const Member = () => {
     if (search !== "") {
       setIsSearchModeOn(true);
       try {
-        const res = await api.get(
-          `${import.meta.env.VITE_API_URL}/members/searched-members?searchTerm=${search}`,
-          
-        );
+        const res = await api.get(`/members/searched-members?searchTerm=${search}`);
+        
         if (!res?.data?.data) {
           setData([]);
           return;
