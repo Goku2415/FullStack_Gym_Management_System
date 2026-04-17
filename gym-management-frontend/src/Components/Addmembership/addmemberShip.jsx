@@ -9,14 +9,18 @@ const AddmemberShip = ({ handleClose }) => {
   const fetchMemberships = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/plans/get-memberships`,
-        { withCredentials: true }
+        `${import.meta.env.VITE_API_URL}/api/membership/get-memberships`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
       );
 
       setMembership(res.data.membership || []);
 
       toast.success(
-        res.data.membership.length + " Memberships fetched successfully"
+        res.data.membership.length + " Memberships fetched successfully",
       );
     } catch (err) {
       console.log(err);
@@ -31,9 +35,13 @@ const AddmemberShip = ({ handleClose }) => {
   const handleAddmembership = async () => {
     axios
       .post(
-        `${import.meta.env.VITE_API_URL}/plans/add-membership`,
+        `${import.meta.env.VITE_API_URL}/api/membership/add-membership`,
         inputField,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
       )
       .then((res) => {
         toast.success(res.data.message);
@@ -52,11 +60,9 @@ const AddmemberShip = ({ handleClose }) => {
 
   return (
     <div className="text-black w-full max-w-3xl mx-auto">
-
       {/* Membership Cards */}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
         {membership.map((item, index) => {
           return (
             <div
@@ -67,9 +73,7 @@ const AddmemberShip = ({ handleClose }) => {
                 {item.months} Month Membership
               </div>
 
-              <div className="text-gray-300 mt-2">
-                ₹ {item.price}
-              </div>
+              <div className="text-gray-300 mt-2">₹ {item.price}</div>
             </div>
           );
         })}
@@ -82,7 +86,6 @@ const AddmemberShip = ({ handleClose }) => {
       {/* Add Membership Form */}
 
       <div className="flex flex-col sm:flex-row gap-4 items-center">
-
         <input
           value={inputField.months}
           onChange={(event) => handleOnChange(event, "months")}
@@ -105,11 +108,9 @@ const AddmemberShip = ({ handleClose }) => {
         >
           Add +
         </button>
-
       </div>
 
       <ToastContainer />
-
     </div>
   );
 };
