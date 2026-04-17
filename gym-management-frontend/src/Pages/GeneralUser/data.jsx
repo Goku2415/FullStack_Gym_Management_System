@@ -1,5 +1,4 @@
-import api from "../api/api";
-const getMonthlyJoined = async () => {
+import api from "../../api/api";const getMonthlyJoined = async () => {
     try {
         const res = await api.get(`${import.meta.env.VITE_API_URL}/members/monthly-members`, {withCredentials:true});
         return res.data.members || [];

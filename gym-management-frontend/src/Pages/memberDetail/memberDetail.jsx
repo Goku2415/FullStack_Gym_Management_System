@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate, useParams } from "react-router-dom";
 import Switch from "react-switch";
-import api from "../api/api";
-import { toast, ToastContainer } from "react-toastify";
+import api from "../../api/api";import { toast, ToastContainer } from "react-toastify";
 
 const MemberDetail = () => {
   const [status, setStatus] = useState("");

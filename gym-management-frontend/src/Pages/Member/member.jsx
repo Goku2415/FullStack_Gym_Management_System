@@ -11,8 +11,7 @@ import MemberCard from "../../Components/MemberCard/memberCard.jsx";
 import AddmemberShip from "../../Components/Addmembership/addmemberShip.jsx";
 import Addmembers from "../../Components/Addmembers/addmembers.jsx";
 import { ToastContainer, toast } from "react-toastify";
-import api from "../api/api";
-
+import api from "../../api/api";
 const Member = () => {
   const [addMembership, setAddmemberShip] = useState(false);
   const [addMember, setAddmember] = useState(false);

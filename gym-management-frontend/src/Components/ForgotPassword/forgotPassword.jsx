@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Loader from "../Loader/loader";
-import api from "../api/api";
-const ForgotPassword = () => {
+import api from "../../api/api";const ForgotPassword = () => {
   const [emailSubmit, setEmailSubmit] = useState(false);
   const [otpValidate, setOtpValidate] = useState(false);
   const [loader, setLoader] = useState(false);

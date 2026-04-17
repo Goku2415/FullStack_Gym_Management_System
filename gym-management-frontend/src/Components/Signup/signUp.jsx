@@ -4,8 +4,7 @@ import Modal from "../Modal/modal";
 import ForgotPassword from "../ForgotPassword/forgotPassword";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import api from "../api/api";
-import Stack from "@mui/material/Stack";
+import api from "../../api/api";import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 
 const SignUp = () => {
