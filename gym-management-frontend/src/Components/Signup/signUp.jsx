@@ -4,7 +4,8 @@ import Modal from "../Modal/modal";
 import ForgotPassword from "../ForgotPassword/forgotPassword";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import api from "../../api/api";import Stack from "@mui/material/Stack";
+import api from "../../api/api";
+import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 
 const SignUp = () => {
@@ -12,7 +13,6 @@ const SignUp = () => {
 
   const [inputField, setInputField] = useState({
     email: "",
-    gymName: "",
     userName: "",
     password: "",
     profilePic: "/y.jpg",
@@ -40,28 +40,25 @@ const SignUp = () => {
     data.append("upload_preset", "gym-management");
 
     try {
-      const response = await api.post(
+      const response = await axios.post(
+        // ✅ use axios NOT api
         "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
         data,
       );
 
       const imageUrl = response.data.secure_url;
 
-      setInputField({ ...inputField, profilePic: imageUrl });
-
-      setLoaderImage(false);
+      setInputField((prev) => ({ ...prev, profilePic: imageUrl }));
     } catch (err) {
       console.log(err);
+    } finally {
       setLoaderImage(false);
     }
   };
 
   const handleRegister = async () => {
     try {
-      const res = await api.post(
-        `${import.meta.env.VITE_API_URL}/auth/register`,
-        inputField,
-      );
+      const res = await api.post("/auth/register", inputField);
 
       toast.success(res.data.message);
 
@@ -101,14 +98,14 @@ const SignUp = () => {
           placeholder="Enter Username"
           className="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
-        <input
+        {/* <input
           name="gymName"
           value={inputField.gymName}
           onChange={(event) => handleOnChange(event, "gymName")}
           type="text"
           placeholder="Enter Gym Name"
           className="w-full p-3 border rounded-lg mb-4"
-        />
+        /> */}
 
         <input
           name="password"

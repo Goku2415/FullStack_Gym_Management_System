@@ -48,7 +48,7 @@ const Member = () => {
       );
 
       if (!res?.data?.members) {
-        setData([]);
+        setData(members);
         return;
       }
 
