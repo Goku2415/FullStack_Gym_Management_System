@@ -35,7 +35,6 @@ const AddmemberShip = ({ handleClose }) => {
   const handleAddmembership = async () => {
     try {
       const res = await api.post("/plans/add-membership", inputField);
-
       toast.success(res.data.message);
       fetchMemberships(); // refresh UI
       handleClose();

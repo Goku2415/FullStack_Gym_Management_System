@@ -230,7 +230,7 @@ const Member = () => {
         <Modal
           header={"Add New Member"}
           handleClose={handleMembers}
-          content={<Addmembers />}
+          content={<Addmembers onSuccess={fetchData} />}
         />
       )}
       <ToastContainer />

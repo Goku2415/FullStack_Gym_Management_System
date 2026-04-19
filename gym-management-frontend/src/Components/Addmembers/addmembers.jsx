@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 import axios from "axios";
 
-const Addmembers = () => {
+const Addmembers = ({ onSuccess }) => {
   const [inputField, setInputField] = useState({
     name: "",
     mobileNo: "",
@@ -25,7 +25,7 @@ const Addmembers = () => {
 
   const handleRegisterButton = async () => {
     try {
-      const res = await api.post("/members/register-member", inputField);
+      const res = await api.post("/api/members/register-member", inputField);
 
       setInputField({
         name: "",
@@ -37,6 +37,7 @@ const Addmembers = () => {
       });
 
       toast.success("Member added successfully!");
+      if (onSuccess) onSuccess();
     } catch (err) {
       console.log(err);
       toast.error("Failed to add member");
@@ -60,9 +61,9 @@ const Addmembers = () => {
 
     try {
       const response = await axios.post(
-  "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
-  data
-);
+        "https://api.cloudinary.com/v1_1/dwapgarrx/image/upload",
+        data,
+      );
 
       const imageUrl = response.data.secure_url;
 
@@ -76,7 +77,7 @@ const Addmembers = () => {
 
   const fetchMemberships = async () => {
     try {
-      const res = await api.get('/plans/get-memberships');
+      const res = await api.get("/plans/get-memberships");
 
       const memberships = res.data.membership || [];
       setMembershipList(memberships);
@@ -105,9 +106,7 @@ const Addmembers = () => {
 
   return (
     <div className="text-black w-full max-w-3xl mx-auto">
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-lg">
-
         <input
           value={inputField.name}
           onChange={(e) => handleOnChange(e, "name")}
@@ -174,11 +173,9 @@ const Addmembers = () => {
         >
           Register
         </button>
-
       </div>
 
       <ToastContainer />
-
     </div>
   );
 };

@@ -1,0 +1,9 @@
+
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://gym-backend-qrp7.onrender.com/$1"
+    }
+  ]
+}
