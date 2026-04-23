@@ -15,21 +15,28 @@ const app = express();
 
 
 // CORS
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
+// app.use(cors({
+//   origin: function(origin, callback) {
+//     if (!origin) return callback(null, true);
 
-    if (
-      origin.includes("vercel.app") || 
-      origin === "http://localhost:5173"
-    ) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
+//     if (
+//       origin.includes("vercel.app") || 
+//       origin === "http://localhost:5173"
+//     ) {
+//       return callback(null, true);
+//     } else {
+//       return callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// }));
+
+
+
+app.use(cors());
+
+
+
 
 // Middleware
 app.use(express.json());
