@@ -13,24 +13,23 @@ const app = express();
 
 app.use(cors());
 
-app.options('*', cors());
 
-// CORS
-// app.use(cors({
-//   origin: function(origin, callback) {
-//     if (!origin) return callback(null, true);
+CORS
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
 
-//     if (
-//       origin.includes("vercel.app") || 
-//       origin === "http://localhost:5173"
-//     ) {
-//       return callback(null, true);
-//     } else {
-//       return callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true
-// }));
+    if (
+      origin.includes("vercel.app") || 
+      origin === "http://localhost:5173"
+    ) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 
 
 
