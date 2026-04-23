@@ -8,11 +8,12 @@ const connectDB = require("./DBConn/conn");
 // Connect DB
 connectDB();
 
-app.options('*', cors());
-
 const app = express();
 
 
+app.use(cors());
+
+app.options('*', cors());
 
 // CORS
 // app.use(cors({
@@ -33,7 +34,6 @@ const app = express();
 
 
 
-app.use(cors());
 
 
 
