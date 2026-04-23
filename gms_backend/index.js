@@ -8,21 +8,38 @@ const connectDB = require("./DBConn/conn");
 // Connect DB
 connectDB();
 
+app.options('*', cors());
+
 const app = express();
+
+
+
+// CORS
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (
+      origin.includes("vercel.app") || 
+      origin === "http://localhost:5173"
+    ) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// CORS
-app.use(cors({
-   origin: [
-    "http://localhost:5173",
-    "https://gms-frontend-opal.vercel.app"
-  ],
-  credentials: true
-}));
+
+
+
+
 
 // Routes
 const GymRoutes = require("./Routes/gym");
